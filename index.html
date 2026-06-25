@@ -79,7 +79,7 @@
                     <i class="fa-solid fa-square-poll-horizontal"></i> 住戶投票登記
                 </button>
                 <button id="tab-admin" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold rounded-lg transition-all duration-300 text-slate-600 hover:text-slate-950">
-                    <i class="fa-solid fa-chart-pie"></i> 即時開票後台
+                    <i class="fa-solid fa-lock"></i> 即時開票後台
                 </button>
             </div>
         </div>
@@ -88,7 +88,7 @@
     <!-- 狀態指示條 -->
     <div class="bg-blue-600 text-white px-4 py-2 text-xs sm:text-sm text-center font-semibold shadow-inner flex items-center justify-center gap-2">
         <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span>系統已啟用本機模擬資料庫，點擊右上角「即時開票後台」可同步觀看統計長條圖與表決名冊。</span>
+        <span>系統已啟用本機模擬資料庫，點擊右上角「即時開票後台」並驗證管理員密碼即可同步觀看開票。</span>
     </div>
 
     <!-- 主框架 -->
@@ -126,7 +126,7 @@
             <div class="bg-white border border-slate-200/80 rounded-3xl shadow-sm overflow-hidden">
                 <div class="border-b border-slate-100 bg-slate-50/50 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
-                        <i class="fa-solid fa-chart-line text-blue-600"></i> 各方案綜合評估與財務回報對比表 (中立期望值 EV 與 投報率 ROI 精算)
+                        <i class="fa-solid fa-chart-line text-blue-600"></i> 各方案綜合評估與財務回報對比表
                     </h3>
                     <div class="flex items-center gap-1.5 text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
                         <i class="fa-solid fa-users"></i> 全社區 47 戶均攤試算
@@ -136,7 +136,7 @@
                 <!-- 費用分攤小燈泡 -->
                 <div class="p-4 bg-amber-50 border-b border-amber-100 text-amber-800 text-xs sm:text-sm font-medium flex items-start gap-2.5">
                     <i class="fa-solid fa-lightbulb text-amber-500 mt-0.5 shrink-0"></i>
-                    <span><strong>分析表說明：</strong>本表所有涉及訴訟與調解案（B、C、D方案）之財務期望值，統一採用中立 <strong>50% 機率</strong> 進行模擬。所有「每戶分攤」金額為便利呈現，皆以社區 47 戶均攤計算。實際執行時，將依各戶大樓產權之「坪數比例」進行分攤。</span>
+                    <span><strong>分析表說明：</strong>本表所有涉及訴訟與調解案之財務數據，統一以中立 50% 勝敗訴機率作背景對比。下方附設住戶專屬分攤試算器，可依大樓產權之「坪數比例」進行各戶型精確金額計算。</span>
                 </div>
 
                 <!-- 數據對比大表格 -->
@@ -147,8 +147,8 @@
                                 <th class="p-4 w-[16%] text-center border-r border-slate-800">評估項目</th>
                                 <th class="p-4 w-[14%] text-center text-slate-300 bg-slate-950">方案 0 (歷史紀錄)<br><span class="text-[10px] font-normal text-red-300">消保官調解 (已失敗)</span></th>
                                 <th class="p-4 w-[15%] text-center text-slate-100">方案 A (直接修繕)<br><span class="text-[10px] font-normal text-slate-300">(不訴訟 / 自費修繕)</span></th>
-                                <th class="p-4 w-[25%] text-center text-amber-300 bg-amber-950/20">方案 B (以戰逼和)<br><span class="text-[10px] font-normal text-amber-400">訴訟狀 + 法院調解 (求償 20 萬)</span></th>
-                                <th class="p-4 w-[15%] text-center text-blue-300 bg-blue-950/20">方案 C (一審訴訟)<br><span class="text-[10px] font-normal text-blue-400">委任律師打到底 (求償 50 萬)</span></th>
+                                <th class="p-4 w-[25%] text-center text-amber-300 bg-amber-950/20">方案 B (以戰逼和)<br><span class="text-[10px] font-normal text-amber-400">訴訟狀 + 法院調解 (並列對比)</span></th>
+                                <th class="p-4 w-[15%] text-center text-blue-300 bg-blue-950/20">方案 C (一審訴訟)<br><span class="text-[10px] font-normal text-blue-400">委任律師打到底 (求償50萬)</span></th>
                                 <th class="p-4 w-[15%] text-center text-red-300 bg-red-950/20">方案 D (訴訟到底)<br><span class="text-[10px] font-normal text-red-400">擴大求償 100 萬</span></th>
                             </tr>
                         </thead>
@@ -161,7 +161,7 @@
                                 <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">目前狀態</td>
                                 <td class="p-4 text-center text-red-600 font-semibold bg-red-50/30">已不成立結案</td>
                                 <td class="p-4 text-center text-emerald-600 font-semibold">直接自費修好</td>
-                                <td class="p-4 text-center text-amber-600 font-semibold bg-amber-50/10">法庭和解</td>
+                                <td class="p-4 text-center text-amber-600 font-semibold bg-amber-50/10">逼建商在法庭調解和解</td>
                                 <td class="p-4 text-center text-blue-600 font-semibold bg-blue-50/10">正式提起民事訴訟</td>
                                 <td class="p-4 text-center text-red-500 font-semibold bg-red-50/10">向建商擴大民事求償</td>
                             </tr>
@@ -240,7 +240,7 @@
                                 <td class="p-4 text-center font-mono text-red-600 font-semibold bg-blue-50/10">235,440 元<br><span class="text-[10px] text-slate-400 font-normal">(律師費 + 裁判 + 基本鑑定)</span></td>
                                 <td class="p-4 text-center font-mono text-red-700 font-bold bg-red-50/10">431,700 元<br><span class="text-[10px] text-slate-400 font-normal">(律師費 + 裁判 + 高階鑑定)</span></td>
                             </tr>
-                            <tr>
+                            <tr class="border-b border-slate-200">
                                 <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">每戶前期分攤<br><span class="text-[10px] text-slate-400 font-normal">(47戶均攤)</span></td>
                                 <td class="p-4 text-center font-mono">0 元</td>
                                 <td class="p-4 text-center font-mono text-slate-700 font-semibold">3,038 元</td>
@@ -258,9 +258,9 @@
                                 <td class="p-4 text-center font-mono text-red-600 font-bold bg-red-50/10">9,185 元</td>
                             </tr>
 
-                            <!-- 4. 損益與回報 (50% 機率計算期望值) -->
+                            <!-- 4. 財務損益對比 -->
                             <tr class="bg-slate-50/50">
-                                <td colspan="6" class="p-2.5 font-bold text-slate-900 bg-emerald-100 pl-4 text-xs tracking-wider uppercase"><i class="fa-solid fa-chart-line mr-1"></i> 📈 中立財務損益期望值與期望投資報酬率 (ROI)</td>
+                                <td colspan="6" class="p-2.5 font-bold text-slate-900 bg-emerald-100 pl-4 text-xs tracking-wider uppercase"><i class="fa-solid fa-chart-line mr-1"></i> 📈 財務損益對比</td>
                             </tr>
                             <tr class="bg-emerald-50/10">
                                 <td class="p-4 font-bold bg-emerald-50/30 text-emerald-950 text-center border-r border-slate-150">和解 / 勝訴淨損益</td>
@@ -269,19 +269,19 @@
                                 <td class="p-4 bg-amber-50/10 font-mono text-emerald-700">
                                     <div class="grid grid-cols-2 gap-2 text-center divide-x divide-slate-200">
                                         <div>
-                                            <span class="font-bold">+35,760 元</span><br>
-                                            <span class="text-[10px] text-slate-500">(取得賠償且修妥)</span>
+                                            <span class="font-bold">-21,440 元</span><br>
+                                            <span class="text-[10px] text-slate-500">(建商完成和解修繕)</span>
                                         </div>
                                         <div>
-                                            <span class="font-bold">-44,240 元</span><br>
-                                            <span class="text-[10px] text-slate-500">(取得賠償且修妥)</span>
+                                            <span class="font-bold">-101,440 元</span><br>
+                                            <span class="text-[10px] text-slate-500">(建商完成和解修繕)</span>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="p-4 text-center font-semibold text-emerald-600 bg-blue-50/10">+277,200 元<br><span class="text-[10px] text-slate-500 font-normal">(判賠50萬並退裁判鑑定)</span></td>
-                                <td class="p-4 text-center font-bold text-emerald-600 bg-red-50/10">+587,200 元<br><span class="text-[10px] text-slate-500 font-normal">(判賠100萬並退裁判鑑定)</span></td>
+                                <td class="p-4 text-center font-semibold text-slate-700 bg-blue-50/10">-85,440 元<br><span class="text-[10px] text-slate-500 font-normal">(判賠退裁判基本鑑定)</span></td>
+                                <td class="p-4 text-center font-bold text-emerald-600 bg-red-50/10">+425,500 元<br><span class="text-[10px] text-slate-500 font-normal">(取得賠償並扣除自修)</span></td>
                             </tr>
-                            <tr class="bg-emerald-50/10">
+                            <tr class="bg-emerald-50/10 border-b border-slate-200">
                                 <td class="p-4 font-bold bg-emerald-50/30 text-emerald-950 text-center border-r border-slate-150">失敗 / 敗訴淨損益</td>
                                 <td class="p-4 text-center text-red-700 font-medium font-mono">-142,800 元<br><span class="text-[10px] text-slate-500 font-normal">(回歸自費修繕)</span></td>
                                 <td class="p-4 text-center text-slate-400">—</td>
@@ -289,72 +289,142 @@
                                     <div class="grid grid-cols-2 gap-2 text-center divide-x divide-slate-200">
                                         <div>
                                             <span class="font-bold">-164,240 元</span><br>
-                                            <span class="text-[10px] text-slate-500">(和解不成轉自費修繕)</span>
+                                            <span class="text-[10px] text-slate-500">(自費修繕自理)</span>
                                         </div>
                                         <div>
                                             <span class="font-bold">-244,240 元</span><br>
-                                            <span class="text-[10px] text-slate-500">(和解不成轉自費修繕)</span>
+                                            <span class="text-[10px] text-slate-500">(自費修繕自理)</span>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="p-4 text-center text-red-600 font-mono bg-blue-50/10">-378,240 元<br><span class="text-[10px] text-slate-500 font-normal">(敗訴承擔全部官司與自修)</span></td>
-                                <td class="p-4 text-center text-red-700 font-bold font-mono bg-red-50/10">-694,500 元<br><span class="text-[10px] text-slate-500 font-normal">(敗訴負擔高階鑑定裁判費)</span></td>
-                            </tr>
-                            <tr class="bg-emerald-50/10">
-                                <td class="p-4 font-bold bg-emerald-50/30 text-emerald-950 text-center border-r border-slate-150">社區總期望淨值 (EV)</td>
-                                <td class="p-4 text-center font-mono text-red-700 font-semibold">-142,800 元</td>
-                                <td class="p-4 text-center font-mono text-slate-700 font-semibold">-142,800 元</td>
-                                <td class="p-4 bg-amber-50/10 font-mono text-slate-700">
-                                    <div class="grid grid-cols-2 gap-2 text-center divide-x divide-slate-200">
-                                        <div>
-                                            <span class="font-bold text-emerald-700">-64,240 元</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-bold text-red-600">-144,240 元</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="p-4 text-center font-mono text-red-600 font-semibold bg-blue-50/20">-50,520 元</td>
-                                <td class="p-4 text-center font-mono text-emerald-600 font-bold bg-emerald-100/20">+6,350 元</td>
-                            </tr>
-                            <tr class="bg-emerald-50/10">
-                                <td class="p-4 font-bold bg-emerald-50/30 text-emerald-950 text-center border-r border-slate-150">相較自費省下金額</td>
-                                <td class="p-4 text-center text-slate-500">0 元 (已無效)</td>
-                                <td class="p-4 text-center text-slate-500">基準 (0 元)</td>
-                                <td class="p-4 bg-amber-50/10 font-mono">
-                                    <div class="grid grid-cols-2 gap-2 text-center divide-x divide-slate-200">
-                                        <div>
-                                            <span class="font-bold text-emerald-600">+78,560 元</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-bold text-rose-600">-1,440 元</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="p-4 text-center text-emerald-600 font-semibold bg-blue-50/10">+92,280 元<br><span class="text-[10px] text-slate-500 font-normal">(求償50萬勝訴覆蓋成本)</span></td>
-                                <td class="p-4 text-center text-emerald-600 font-bold bg-red-50/10">+149,150 元<br><span class="text-[10px] text-slate-500 font-normal">(高期望節省效應)</span></td>
-                            </tr>
-                            <tr class="bg-emerald-100/30 font-bold text-slate-900">
-                                <td class="p-4 bg-emerald-100/50 text-emerald-950 text-center border-r border-emerald-200">總期望投資報酬率 (ROI)</td>
-                                <td class="p-4 text-center text-slate-400">0%</td>
-                                <td class="p-4 text-center text-slate-500">0% <span class="text-xs font-normal text-slate-400">(基準)</span></td>
-                                <td class="p-4 bg-emerald-50 font-mono">
-                                    <div class="grid grid-cols-2 gap-2 text-center divide-x divide-slate-200">
-                                        <div>
-                                            <span class="text-emerald-700 text-base font-extrabold">+366.4%</span><br>
-                                            <span class="text-[9px] font-bold text-emerald-600">(🟢 無出庭律師)</span>
-                                        </div>
-                                        <div>
-                                            <span class="text-rose-700 text-base font-extrabold">-1.4%</span><br>
-                                            <span class="text-[9px] font-bold text-rose-500">(🔵 含出庭律師)</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="p-4 text-center text-emerald-700 bg-blue-50/50">+39.2%<br><span class="text-[10px] font-normal text-emerald-600">(正向期望回報)</span></td>
-                                <td class="p-4 text-center text-emerald-700 bg-emerald-50/50">+34.5%<br><span class="text-[10px] font-normal text-emerald-600">(規模效應優質回報)</span></td>
+                                <td class="p-4 text-center text-red-600 font-mono bg-blue-50/10">-378,240 元<br><span class="text-[10px] text-slate-500 font-normal">(敗訴承擔訴訟鑑定)</span></td>
+                                <td class="p-4 text-center text-red-700 font-bold font-mono bg-red-50/10">-574,500 元<br><span class="text-[10px] text-slate-500 font-normal">(敗訴承擔鑑定訴訟)</span></td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+            <!-- 🏬 區權戶型實際分攤金額互動精算工具 (依據 image_736e89.png 真實數據精算) -->
+            <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white border border-indigo-800/40 rounded-3xl p-6 sm:p-8 shadow-xl">
+                <div class="border-b border-indigo-800/60 pb-4 mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="font-bold text-lg sm:text-xl flex items-center gap-2 text-indigo-200">
+                            <i class="fa-solid fa-calculator text-emerald-400"></i> 光華琚住戶專屬 · 戶型實際分攤金額精算工具
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1">依據大會決議公文之坪數比例，精算您的戶型在各方案下的實際應付金額</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <label class="text-xs sm:text-sm font-bold text-slate-300">選擇您的戶型：</label>
+                        <select id="calc-unit-select" class="bg-indigo-900/60 border border-indigo-500/30 rounded-xl px-4 py-2 text-sm font-bold text-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-400/50 cursor-pointer">
+                            <option value="1S">1S 戶型 (約 3,809 份值)</option>
+                            <option value="2S">2S 戶型 (約 3,209 份值)</option>
+                            <option value="A" selected>A 戶型 (約 3,458 份值)</option>
+                            <option value="B">B 戶型 (約 3,118 份值)</option>
+                            <option value="C">C 戶型 (約 2,883 份值)</option>
+                            <option value="D">D 戶型 (約 1,982 份值)</option>
+                            <option value="E">E 戶型 (約 2,891 份值)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 內容展示網格 -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- 左側：既有決議（對照大會公文數據 image_736e89.png） -->
+                    <div class="lg:col-span-4 bg-indigo-950/40 rounded-2xl p-5 border border-indigo-800/30 space-y-4">
+                        <span class="inline-flex px-2.5 py-1 rounded bg-indigo-900/80 text-[10px] font-bold text-indigo-300 border border-indigo-700/50 uppercase tracking-wider">
+                            <i class="fa-solid fa-file-invoice-dollar mr-1"></i> 大會既往通知單公文對照 (未稅)
+                        </span>
+                        <div class="space-y-3 divide-y divide-indigo-900/50 text-xs sm:text-sm">
+                            <div class="flex justify-between items-center py-1">
+                                <span class="text-slate-400">議案一 (公設修繕案)</span>
+                                <span class="font-bold text-slate-200" id="calc-prop1">0 元</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-3 py-1">
+                                <span class="text-slate-400">議案二 (地下室牆面漏水)</span>
+                                <span class="font-bold text-slate-200" id="calc-prop2">0 元</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-3 py-1 text-base font-bold text-emerald-400">
+                                <span>公文通知單總計金額</span>
+                                <span id="calc-total">0 元</span>
+                            </div>
+                        </div>
+                        <div class="pt-2 text-[10px] text-slate-400 leading-relaxed">
+                            * 以上數據完全對應新竹市光華琚大會公文（圖片 <code class="text-indigo-300">image_736e89.png</code>）之原始財務分攤金額。
+                        </div>
+                    </div>
+
+                    <!-- 右側：後續表決方案精算金額 (含5%稅) -->
+                    <div class="lg:col-span-8 space-y-4">
+                        <span class="inline-flex px-2.5 py-1 rounded bg-indigo-900/80 text-[10px] font-bold text-emerald-400 border border-indigo-700/50 uppercase tracking-wider">
+                            <i class="fa-solid fa-circle-dollar-to-slot mr-1"></i> 後續處理方案 · 各戶型實際應付金額 (含5%營業稅)
+                        </span>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- 方案 A -->
+                            <div class="bg-slate-800/30 p-4 rounded-2xl border border-slate-700/40 flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs text-slate-400 block font-semibold">方案 A · 直接修繕</span>
+                                    <span class="text-sm font-bold text-slate-200 mt-1 block">自費自理施工</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-lg font-extrabold text-slate-100 font-mono" id="calc-optA">0 元</span>
+                                    <span class="text-[10px] text-slate-400 block mt-0.5">(即議案二含稅額)</span>
+                                </div>
+                            </div>
+
+                            <!-- 方案 B - 沒律師 -->
+                            <div class="bg-emerald-950/20 p-4 rounded-2xl border border-emerald-900/30 flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs text-emerald-400 block font-semibold">方案 B (無律師)</span>
+                                    <span class="text-sm font-bold text-emerald-200 mt-1 block">自行出庭撰狀調解</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-lg font-extrabold text-emerald-400 font-mono" id="calc-optB1">0 元</span>
+                                    <span class="text-[10px] text-slate-400 block mt-0.5">(低前期墊付)</span>
+                                </div>
+                            </div>
+
+                            <!-- 方案 B - 有律師 -->
+                            <div class="bg-blue-950/20 p-4 rounded-2xl border border-blue-900/30 flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs text-blue-400 block font-semibold">方案 B (含律師)</span>
+                                    <span class="text-sm font-bold text-blue-200 mt-1 block">委任律師代理出席</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-lg font-extrabold text-blue-400 font-mono" id="calc-optB2">0 元</span>
+                                    <span class="text-[10px] text-slate-400 block mt-0.5">(免出席負擔)</span>
+                                </div>
+                            </div>
+
+                            <!-- 方案 C -->
+                            <div class="bg-indigo-950/30 p-4 rounded-2xl border border-indigo-900/40 flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs text-indigo-300 block font-semibold">方案 C · 2~3年訴訟</span>
+                                    <span class="text-sm font-bold text-indigo-200 mt-1 block">提起一審民事訴訟</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-lg font-extrabold text-indigo-300 font-mono" id="calc-optC">0 元</span>
+                                    <span class="text-[10px] text-slate-400 block mt-0.5">(律師費與公會鑑定)</span>
+                                </div>
+                            </div>
+
+                            <!-- 方案 D -->
+                            <div class="bg-red-950/20 p-4 rounded-2xl border border-red-900/30 flex justify-between items-center sm:col-span-2">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-red-900/30 rounded-xl flex items-center justify-center text-red-400"><i class="fa-solid fa-scale-balanced"></i></div>
+                                    <div>
+                                        <span class="text-xs text-red-400 block font-semibold">方案 D · 3~4年訴訟到底</span>
+                                        <span class="text-sm font-bold text-red-200 mt-0.5 block">高階安全結構鑑定與上訴到底</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xl font-black text-red-400 font-mono" id="calc-optD">0 元</span>
+                                    <span class="text-[10px] text-slate-400 block mt-0.5">(代墊最高鑑定與裁判成本)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -403,7 +473,7 @@
                                 <span class="inline-flex px-2.5 py-0.5 bg-slate-100 text-slate-700 text-xs font-bold rounded-md mb-1.5 border border-slate-200">方案 A · 自費自理</span>
                                 <p class="font-bold text-slate-900 text-base">不採取法律行動 (直接自費修繕)</p>
                                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                                    放棄對建商追究法律責任。直接委外修繕漏水，費用約 14.28 萬元（每戶平均 3,038 元），0.5 個月內即可完妥完工，期望投資報酬率為 0% (對照組基準)。
+                                    放棄對建商追究法律責任。直接委外修繕漏水，費用約 14.28 萬元（每戶平均 3,038 元），0.5 個月內即可完妥完工。
                                 </p>
                             </div>
                         </label>
@@ -418,8 +488,8 @@
                                 <p class="font-bold text-slate-900 text-base">以戰逼和 (訴訟書狀送達 + 爭取法院調解室和解，求償 20 萬)</p>
                                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
                                     訴訟施壓建商在和解庭修妥。
-                                    若採<strong>「沒律師（自行出庭）」</strong>前期只需付 2.14 萬元（每戶 456 元），<strong>期望投報率達 +366.4%</strong>；
-                                    若住戶或委員時間不便，亦可選配<strong>「有律師（委託代理出席調解）」</strong>前期付 10.14 萬元（每戶 2,158 元），<strong>期望投報率轉為 -1.4%</strong>。跨屆負擔為「中」。
+                                    若採<strong>「沒律師（自行出庭）」</strong>前期只需付 2.14 萬元（每戶 456 元）；
+                                    若住戶或委員時間不便，亦可選配<strong>「有律師（委託代理出席調解）」</strong>前期付 10.14 萬元（每戶 2,158 元），跨屆負擔為「中」。
                                 </p>
                             </div>
                         </label>
@@ -433,7 +503,7 @@
                                 <span class="inline-flex px-2.5 py-0.5 bg-blue-50 text-blue-700 text-xs font-bold rounded-md mb-1.5 border border-blue-200">方案 C · 2~3年正式訴訟</span>
                                 <p class="font-bold text-slate-900 text-base">一審民事訴訟 (委任律師出庭到底，求償 50 萬)</p>
                                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                                    進入長達 2~3 年的一審訴訟，代墊 23.54 萬元前期大額費用（每戶 5,010 元，含律師費、法院裁判與土木公會基本鑑定），委任律師代理（住戶免出庭）。50% 勝率之期望值為 -50,520 元，<strong>期望投報率為 +39.2%</strong>。
+                                    進入長達 2~3 年的一審訴訟，代墊 23.54 萬元前期大額費用（每戶 5,010 元，含律師費、法院裁判與土木公會基本鑑定），委任律師代理（住戶免出庭）。
                                 </p>
                             </div>
                         </label>
@@ -447,7 +517,7 @@
                                 <span class="inline-flex px-2.5 py-0.5 bg-red-50 text-red-700 text-xs font-bold rounded-md mb-1.5 border border-red-200">方案 D · 3~4年訴訟到底</span>
                                 <p class="font-bold text-slate-900 text-base">若敗訴同意上訴到底 (全面鑑定求償 100 萬)</p>
                                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                                    委任律師進行高難度結構瑕疵官司，求償 100 萬。需代墊鉅額 43.17 萬元前期鑑定裁判款（每戶高達 9,185 元），時程長達 3~4 年（跨 2~3 屆管委會）。50% 期望之<strong>期望投報率為 +34.5%</strong>，唯代墊壓力與風險最高。
+                                    委任律師進行高難度結構瑕疵官司，求償 100 萬。需代墊鉅額 43.17 萬元前期鑑定裁判款（每戶高達 9,185 元），時程長達 3~4 年（跨 2~3 屆管委會），代墊壓力與風險最高。
                                 </p>
                             </div>
                         </label>
@@ -517,7 +587,7 @@
                         <i class="fa-solid fa-paper-plane"></i> 提交線上表決單
                     </button>
                     <p class="text-xs text-slate-400 text-center max-w-lg leading-relaxed">
-                        * 點擊提交即代表您已充分詳閱各方案之預估財務期望投報率與時間成本。本表單採取區權實名制提交，資料將即時更新至社區統計名冊。
+                        * 點擊提交即代表您已充分詳閱各方案之預估財務與時間成本。本表單採取區權實名制提交，資料將即時更新至社區統計名冊。
                     </p>
                 </div>
 
@@ -539,7 +609,7 @@
                 </div>
                 <div class="flex flex-col sm:flex-row gap-3 w-full">
                     <button id="btn-view-results" class="flex-1 py-3 bg-blue-50 hover:bg-blue-100 text-blue-600 font-bold text-sm rounded-xl transition">
-                        <i class="fa-solid fa-chart-pie mr-1"></i> 前往統計看板
+                        <i class="fa-solid fa-lock mr-1"></i> 解鎖前往開票統計
                     </button>
                     <button id="btn-vote-again" class="flex-1 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm rounded-xl transition">
                         <i class="fa-solid fa-arrow-rotate-left mr-1"></i> 填寫另一棟戶
@@ -608,6 +678,9 @@
                         <i class="fa-solid fa-chart-column text-blue-600"></i> 四大漏水處置方案 - 得票即時動態分布
                     </h3>
                     <div class="flex items-center gap-2">
+                        <button id="btn-logout" class="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-600 text-xs font-bold rounded-xl transition flex items-center gap-1">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> 安全登出後台
+                        </button>
                         <button id="btn-load-mock" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold rounded-xl transition">
                             <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> 載入社區模擬票數
                         </button>
@@ -620,7 +693,7 @@
                     <!-- 方案 A -->
                     <div class="space-y-2">
                         <div class="flex justify-between items-center text-xs sm:text-sm">
-                            <span class="font-bold text-slate-700">方案 A : 直接修繕 (不訴訟/自費修繕) [期望投報: 0%]</span>
+                            <span class="font-bold text-slate-700">方案 A : 直接修繕 (不訴訟/自費修繕)</span>
                             <span class="font-extrabold text-slate-600" id="bar-label-A">0 票 (0.0%)</span>
                         </div>
                         <div class="h-4.5 w-full bg-slate-100 rounded-full overflow-hidden">
@@ -631,7 +704,7 @@
                     <!-- 方案 B -->
                     <div class="space-y-2">
                         <div class="flex justify-between items-center text-xs sm:text-sm">
-                            <span class="font-bold text-emerald-800">方案 B : 以戰逼和 (1~1.5年調解，求償 20 萬) [期望投報: +233.0% / -29.6%]</span>
+                            <span class="font-bold text-emerald-800">方案 B : 以戰逼和 (1~1.5年調解和解)</span>
                             <span class="font-extrabold text-emerald-700" id="bar-label-B">0 票 (0.0%)</span>
                         </div>
                         <div class="h-4.5 w-full bg-emerald-50 rounded-full overflow-hidden">
@@ -642,7 +715,7 @@
                     <!-- 方案 C -->
                     <div class="space-y-2">
                         <div class="flex justify-between items-center text-xs sm:text-sm">
-                            <span class="font-bold text-blue-900">方案 C : 一審訴訟 (2~3年正式官司，求償 50 萬) [期望投報: +39.2%]</span>
+                            <span class="font-bold text-blue-900">方案 C : 一審訴訟 (2~3年正式官司)</span>
                             <span class="font-extrabold text-blue-600" id="bar-label-C">0 票 (0.0%)</span>
                         </div>
                         <div class="h-4.5 w-full bg-blue-50 rounded-full overflow-hidden">
@@ -653,7 +726,7 @@
                     <!-- 方案 D -->
                     <div class="space-y-2">
                         <div class="flex justify-between items-center text-xs sm:text-sm">
-                            <span class="font-bold text-red-800">方案 D : 上訴到底 (3~4年擴大官司，求償 100 萬) [期望投報: +34.5%]</span>
+                            <span class="font-bold text-red-800">方案 D : 上訴到底 (3~4年擴大官司)</span>
                             <span class="font-extrabold text-red-600" id="bar-label-D">0 票 (0.0%)</span>
                         </div>
                         <div class="h-4.5 w-full bg-red-50 rounded-full overflow-hidden">
@@ -745,9 +818,45 @@
         </div>
     </div>
 
+    <!-- ==================== 管理員密碼密鑰安全燈箱 (保護後台專用) ==================== -->
+    <div id="auth-modal-container" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 transition-all duration-300 opacity-0">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full shadow-2xl border border-slate-100 space-y-5 transform scale-95 transition-all duration-300">
+            <div class="text-center space-y-2">
+                <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-xl mx-auto shadow-inner">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">大會管理員身分認證</h3>
+                <p class="text-xs text-slate-400">即時開票名冊包含住戶隱私及聯絡電話，請輸入專屬管理密鑰以解鎖瀏覽。</p>
+            </div>
+            
+            <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">管理密鑰碼 (預設 2026)</label>
+                <div class="relative">
+                    <input type="password" id="auth-password-input" placeholder="請輸入密碼"
+                        class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm text-center tracking-widest font-bold">
+                    <button id="btn-toggle-password-visible" class="absolute right-3 top-3.5 text-slate-400 hover:text-slate-600 text-xs transition">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                <p id="auth-error-msg" class="text-red-500 text-[11px] font-bold text-center mt-1 hidden">
+                    <i class="fa-solid fa-circle-exclamation mr-0.5"></i> 密鑰驗證失敗，請重新輸入
+                </p>
+            </div>
+
+            <div class="flex gap-3">
+                <button id="btn-cancel-auth" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 text-sm font-bold rounded-xl transition">
+                    取消
+                </button>
+                <button id="btn-confirm-auth" class="flex-1 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-sm font-bold rounded-xl transition shadow-lg shadow-indigo-100 flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-unlock-keyhole"></i> 驗證解鎖
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- 底部版權聲明 -->
     <footer class="bg-slate-900 text-slate-500 py-6 text-center border-t border-slate-800 text-xs mt-12">
-        <p>© 2026 光華琚社區管理委員會. 本網頁表決系統符合完全客觀、中立之財務期望值評估原則</p>
+        <p>© 2026 光華琚社區管理委員會. 本網頁表決系統符合完全客觀、中立之財務期望評估原則</p>
     </footer>
 
     <!-- 自訂客製化 Toast 通知元件 -->
@@ -761,7 +870,22 @@
         const GOOGLE_SCRIPT_URL = ""; 
         // ==========================================
 
-        // 社區開票本機資料庫 (提供初始數據，包含代表投報率取向之分布)
+        // 【管理員安全防護金鑰設定】
+        const ADMIN_PASSWORD = "2026"; // 👈 請在此處修改您的後台解鎖密碼
+        let isAdminAuthenticated = false; // 初始認證狀態
+
+        // 依據 image_736e89.png 公文之未稅與含5%稅計算比例對照資料庫
+        const unitFinanceMapping = {
+            "1S": { prop1: 4313, prop2: 3809, total: 8122, taxProp2: 4000 },
+            "2S": { prop1: 3634, prop2: 3209, total: 6843, taxProp2: 3369 },
+            "A":  { prop1: 3915, prop2: 3458, total: 7373, taxProp2: 3631 },
+            "B":  { prop1: 3531, prop2: 3118, total: 6649, taxProp2: 3274 },
+            "C":  { prop1: 3264, prop2: 2883, total: 6147, taxProp2: 3027 },
+            "D":  { prop1: 2244, prop2: 1982, total: 4226, taxProp2: 2081 },
+            "E":  { prop1: 3273, prop2: 2891, total: 6164, taxProp2: 3036 }
+        };
+
+        // 社區開票本機資料庫 (提供初始數據)
         let dbVotes = [
             { id: "1", name: "王大明", unit: "A棟10樓之1", phone: "0912-111111", voteOption: "B", willingToAttend: "yes", crossTermContinue: "yes", timestamp: "2026-06-25T14:30:00.000Z" },
             { id: "2", name: "張美琪", unit: "B棟3樓之2", phone: "0934-222222", voteOption: "C", willingToAttend: "no", crossTermContinue: "yes", timestamp: "2026-06-25T15:10:00.000Z" },
@@ -774,6 +898,8 @@
         window.onload = function() {
             renderStatistics();
             setupLightbox();
+            setupSecurityAuth();
+            setupInteractiveCalculator();
         };
 
         // ==== Lightbox 燈箱開關邏輯 ====
@@ -826,7 +952,127 @@
         }
 
         tabVote.addEventListener('click', () => switchTab('vote'));
-        tabAdmin.addEventListener('click', () => switchTab('admin'));
+        
+        tabAdmin.addEventListener('click', () => {
+            if (isAdminAuthenticated) {
+                switchTab('admin');
+            } else {
+                openAuthModal();
+            }
+        });
+
+        // ==== 後台身分密碼驗證模組事件 ====
+        function setupSecurityAuth() {
+            const authContainer = document.getElementById('auth-modal-container');
+            const authModal = authContainer.querySelector('.bg-white');
+            const passInput = document.getElementById('auth-password-input');
+            const toggleVisible = document.getElementById('btn-toggle-password-visible');
+            const btnCancel = document.getElementById('btn-cancel-auth');
+            const btnConfirm = document.getElementById('btn-confirm-auth');
+            const errorMsg = document.getElementById('auth-error-msg');
+            const btnLogout = document.getElementById('btn-logout');
+
+            // 展開驗證燈箱
+            window.openAuthModal = function() {
+                passInput.value = "";
+                errorMsg.classList.add('hidden');
+                authContainer.classList.remove('hidden');
+                setTimeout(() => {
+                    authContainer.classList.remove('opacity-0');
+                    authModal.classList.remove('scale-95');
+                }, 50);
+                passInput.focus();
+            };
+
+            // 關閉驗證燈箱
+            window.closeAuthModal = function() {
+                authContainer.classList.add('opacity-0');
+                authModal.classList.add('scale-95');
+                setTimeout(() => {
+                    authContainer.classList.add('hidden');
+                }, 300);
+            };
+
+            // 切換密碼顯示隱藏
+            toggleVisible.addEventListener('click', () => {
+                if (passInput.type === 'password') {
+                    passInput.type = 'text';
+                    toggleVisible.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+                } else {
+                    passInput.type = 'password';
+                    toggleVisible.innerHTML = '<i class="fa-solid fa-eye"></i>';
+                }
+            });
+
+            // 取消
+            btnCancel.addEventListener('click', closeAuthModal);
+
+            // 密碼確認邏輯
+            function executeAuthentication() {
+                const userEntered = passInput.value.trim();
+                if (userEntered === ADMIN_PASSWORD) {
+                    isAdminAuthenticated = true;
+                    closeAuthModal();
+                    tabAdmin.innerHTML = `<i class="fa-solid fa-chart-pie"></i> 即時開票後台`;
+                    switchTab('admin');
+                    showToast("🔓 管理員密碼驗證成功，後台已成功解鎖！", "success");
+                } else {
+                    errorMsg.classList.remove('hidden');
+                    passInput.select();
+                    passInput.focus();
+                    showToast("❌ 解鎖失敗！請輸入正確密鑰碼", "error");
+                }
+            }
+
+            btnConfirm.addEventListener('click', executeAuthentication);
+            passInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    executeAuthentication();
+                }
+            });
+
+            // 安全登出後台
+            btnLogout.addEventListener('click', () => {
+                isAdminAuthenticated = false;
+                tabAdmin.innerHTML = `<i class="fa-solid fa-lock"></i> 即時開票後台`;
+                switchTab('vote');
+                showToast("🔒 已安全退出管理系統，後台控制端已重新鎖定。");
+            });
+        }
+
+        // ==== 戶型分攤金額互動精算邏輯 ====
+        function setupInteractiveCalculator() {
+            const selectEl = document.getElementById('calc-unit-select');
+            
+            function calculate() {
+                const unitType = selectEl.value;
+                const config = unitFinanceMapping[unitType];
+                if (!config) return;
+
+                // 渲染大會既有通知書對比 (Prop1 & Prop2 未稅)
+                document.getElementById('calc-prop1').textContent = config.prop1.toLocaleString() + " 元";
+                document.getElementById('calc-prop2').textContent = config.prop2.toLocaleString() + " 元";
+                document.getElementById('calc-total').textContent = config.total.toLocaleString() + " 元";
+
+                // 計算新方案實際分攤款 (含5%稅，以方案 A 142,800 元、方案 B-1 21,440 元、方案 B-2 101,440 元、方案 C 235,440 元、方案 D 431,700 元作比例基準)
+                const baseTaxInclusive = config.taxProp2; // 即 方案 A 的分攤金額 (136,000 元 * 1.05 的坪數分攤)
+                
+                const optA = baseTaxInclusive;
+                const optB1 = Math.round(baseTaxInclusive * (21440 / 142800));
+                const optB2 = Math.round(baseTaxInclusive * (101440 / 142800));
+                const optC = Math.round(baseTaxInclusive * (235440 / 142800));
+                const optD = Math.round(baseTaxInclusive * (431700 / 142800));
+
+                document.getElementById('calc-optA').textContent = optA.toLocaleString() + " 元";
+                document.getElementById('calc-optB1').textContent = optB1.toLocaleString() + " 元";
+                document.getElementById('calc-optB2').textContent = optB2.toLocaleString() + " 元";
+                document.getElementById('calc-optC').textContent = optC.toLocaleString() + " 元";
+                document.getElementById('calc-optD').textContent = optD.toLocaleString() + " 元";
+            }
+
+            selectEl.addEventListener('change', calculate);
+            calculate(); // 初始呼叫
+        }
 
         // ==== 方案單選卡片點擊高亮互動 ====
         const optionRadios = document.querySelectorAll('input[name="vote-option"]');
@@ -934,8 +1180,13 @@
             voteForm.classList.remove('hidden');
         });
 
+        // 提交成功後，前往統計看板按鈕也需要認證
         document.getElementById('btn-view-results').addEventListener('click', () => {
-            switchTab('admin');
+            if (isAdminAuthenticated) {
+                switchTab('admin');
+            } else {
+                openAuthModal();
+            }
         });
 
         // ==== 即時動態報表統計繪製 ====
@@ -1073,7 +1324,7 @@
             showToast("✨ 已自動模擬匯入 7 筆高投報傾向之住戶真實表決數據！");
         });
 
-        // 複製 CSV 數據到剪貼簿 (安全備用機制)
+        // 複製 CSV 數據 to Clipboard
         document.getElementById('btn-export-csv').addEventListener('click', () => {
             if (dbVotes.length === 0) {
                 showToast("⚠️ 目前暫無住戶表決資料可供複製！", "warning");
