@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>光華琚社區 地下室漏水糾紛處理方案分析與表決系統</title>
     
-    <!-- 載入 Tailwind CSS、Google 字型與 FontAwesome 圖示 -->
+    <!-- -->
+    <!-- 載入 Tailwind CSS、Google 繁中字型與 FontAwesome 圖示 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -31,6 +32,7 @@
         }
     </script>
     
+    <!-- -->
     <style>
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
@@ -60,6 +62,7 @@
 </head>
 <body class="min-h-screen flex flex-col text-slate-800 antialiased bg-slate-50">
 
+    <!-- -->
     <!-- 頂部精美導覽列 -->
     <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -97,29 +100,38 @@
         <!-- ==================== 住戶線上投票頁面 ==================== -->
         <section id="view-vote" class="space-y-6">
             
+            <!-- -->
             <!-- 歷史調解未果背景看板 (放在方案 A 最前方，非任何方案) -->
-            <div class="bg-slate-900 text-slate-100 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-red-600/10 rounded-full blur-3xl"></div>
-                <div class="relative z-10 space-y-4">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold uppercase tracking-wider">
-                        <i class="fa-solid fa-triangle-exclamation"></i> 既往官方調解未果紀錄 (重要背景說明)
+            <div class="bg-red-50 border border-red-200 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row gap-6 items-center justify-between">
+                <div class="flex-1 space-y-3">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-100 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-triangle-exclamation"></i> 既往官方協商紀錄
                     </div>
-                    <div class="space-y-2">
-                        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
-                            本社區管理委員會曾於<strong class="text-white font-bold">民國114年11月4日（星期二）上午10時</strong>，依法指派代表前往<strong class="text-white font-bold">新竹市政府消保官辦公室</strong>（新竹市中央路107號2樓），與建商<strong class="text-white font-bold">「理銘開發股份有限公司」</strong>進行官方正式的「消費爭議協商調解會議」（案號：278-1，發文字號：府消保字第1140170912號，佐證公文請參見大會備查文件 <code class="bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded text-xs font-mono">image_3f9c45.png</code>）。
-                        </p>
-                        <p class="text-sm sm:text-base text-red-400 font-semibold leading-relaxed">
-                            【現況說明】因該次消保調解建商並未給出實質根本之修繕解決方案，導致地下室漏水爭議迄今懸而未決。為防維權時效流失，本次大會特此提出後續方案，請全體區權人進行實質投票決議。
-                        </p>
+                    <h3 class="text-xl font-extrabold text-red-950">行政調解已確認失敗</h3>
+                    <p class="text-sm sm:text-base text-red-800 leading-relaxed">
+                        本社區管理委員會曾於民國114年11月4日，依法指派代表前往新竹市政府消保官辦公室，與建商「理銘開發股份有限公司」進行官方協商調解，惟建商無和解誠意、調解不歡而散（發文字號：府消保字第1140170912號）。為保障社區權益，大會特此提出後續處置方案供區權人進行實質投票。
+                    </p>
+                </div>
+                <!-- 圖片附件卡片 -->
+                <div class="shrink-0 flex flex-col items-center gap-2">
+                    <span class="text-xs font-bold text-red-700 flex items-center gap-1">
+                        <i class="fa-solid fa-file-invoice"></i> 官方公文佐證附件
+                    </span>
+                    <div id="btn-open-lightbox" class="relative group cursor-pointer overflow-hidden rounded-2xl border border-red-200 shadow-md max-w-[200px] hover:shadow-lg transition">
+                        <img src="image_3f9c45.png" alt="新竹市政府消保官協商開會通知單" class="w-full h-auto object-cover transform group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-semibold">
+                            <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點擊放大查看
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- -->
             <!-- 精美財務精算與對比表 -->
             <div class="bg-white border border-slate-200/80 rounded-3xl shadow-sm overflow-hidden">
                 <div class="border-b border-slate-100 bg-slate-50/50 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
-                        <i class="fa-solid fa-chart-line text-blue-600"></i> 各方案財務與時程精算對比
+                        <i class="fa-solid fa-chart-line text-blue-600"></i> 各方案財務與時程精算對比 (含期望值評估)
                     </h3>
                     <div class="flex items-center gap-1.5 text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
                         <i class="fa-solid fa-users"></i> 全社區 47 戶均攤試算
@@ -167,7 +179,7 @@
                                 <td class="p-4 text-center">追加二三審訴訟費<br><span class="text-xs text-slate-400">(每審級逐案增收費用)</span></td>
                             </tr>
                             <tr>
-                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150 text-amber-900">法院土木鑑定費<br><span class="text-[10px] text-slate-400 font-normal">(須先由社區代墊)</span></td>
+                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">法院土木鑑定費<br><span class="text-[10px] text-slate-400 font-normal">(須先由社區代墊)</span></td>
                                 <td class="p-4 text-center text-slate-400">0 元</td>
                                 <td class="p-4 text-center text-slate-400">0 元</td>
                                 <td class="p-4 text-center font-bold text-amber-600 bg-blue-50/20">預估 150,000 元<br><span class="text-[10px] text-slate-400 font-normal">(由社區先全額代墊)</span></td>
@@ -187,11 +199,26 @@
                                 <td class="p-4 text-center text-rose-700 font-bold bg-rose-50/10">訴訟失敗且修繕自理<br><span class="text-xs font-normal text-slate-500">律師+鑑定+自修：</span><br><span class="text-sm">每戶分攤 8,319 ~ 9,638 元</span></td>
                                 <td class="p-4 text-center text-rose-700 font-bold">終局敗訴修繕自理<br><span class="text-xs font-normal text-slate-500">累計歷審總法律訴訟費：</span><br><span class="text-sm">每戶分攤高達 15,000 元以上</span></td>
                             </tr>
+                            <tr class="bg-indigo-50/30 font-bold text-indigo-900">
+                                <td class="p-4 bg-indigo-100/40 text-center border-r border-indigo-200">社區總期望值淨值<br><span class="text-[10px] text-slate-400 font-normal">(機率加權綜合期望)</span></td>
+                                <td class="p-4 text-center">-136,000 元</td>
+                                <td class="p-4 text-center">-88,000 ~ -150,000 元</td>
+                                <td class="p-4 text-center bg-indigo-50/10">-129,830 元<br><span class="text-xs text-slate-400 font-normal">(按常態勝率 60% 估算)</span></td>
+                                <td class="p-4 text-center">變數極大<br><span class="text-xs text-slate-400 font-normal">(視各審級判決與衍生費用而定)</span></td>
+                            </tr>
+                            <tr class="bg-blue-50/40 font-bold text-blue-900">
+                                <td class="p-4 bg-blue-100/40 text-center border-r border-blue-200">每戶承擔期望值<br><span class="text-[10px] text-slate-400 font-normal">(均攤試算)</span></td>
+                                <td class="p-4 text-center">-2,894 元</td>
+                                <td class="p-4 text-center">-1,872 ~ -3,191 元</td>
+                                <td class="p-4 text-center bg-blue-50/10">-2,762 元</td>
+                                <td class="p-4 text-center">需依最終累計<br><span class="text-xs text-slate-400 font-normal">(視實際總訴訟成本而定)</span></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
+            <!-- -->
             <!-- 實體表單 -->
             <form id="vote-form" class="space-y-6">
                 
@@ -220,7 +247,8 @@
                     </div>
                 </div>
 
-                <!-- 方案表決卡片清單 (四選一，無子項) -->
+                <!-- -->
+                <!-- 方案表決卡片清單 (四選一，無任何子項目) -->
                 <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-5">
                     <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2 border-b border-slate-100 pb-3">
                         <span class="w-7 h-7 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm">2</span>
@@ -235,7 +263,7 @@
                             </div>
                             <div class="space-y-1">
                                 <span class="inline-flex px-2.5 py-0.5 bg-slate-100 text-slate-700 text-xs font-bold rounded-md mb-1.5 border border-slate-200">方案 A</span>
-                                <p class="font-bold text-slate-900 text-base">不採取法律行動（不告）</p>
+                                <p class="font-bold text-slate-900 text-base">不採取法律行動 (不告)</p>
                                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
                                     自行委外進行修繕，總修繕費由社區住戶依坪數比例分攤。本方案將完全放棄對建商理銘開發進行任何形式之法律訴訟追討，案件直接結案。
                                 </p>
@@ -251,7 +279,7 @@
                                 <span class="inline-flex px-2.5 py-0.5 bg-amber-50 text-amber-700 text-xs font-bold rounded-md mb-1.5 border border-amber-200">方案 B</span>
                                 <p class="font-bold text-slate-900 text-base">協商和解階段</p>
                                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                                    暫不進入正式法院民事诉訟。優先委請律師撰寫發函書狀、提供諮詢，並嘗試在訴訟外由社區與建商代表達成和解共識、安排和解修繕。
+                                    暫不進入正式法院民事訴訟。優先委請律師撰寫發函書狀、提供諮詢，並嘗試在訴訟外由社區與建商代表達成和解共識、安排和解修繕。
                                 </p>
                             </div>
                         </label>
@@ -264,7 +292,7 @@
                             <div class="space-y-1">
                                 <span class="inline-flex px-2.5 py-0.5 bg-blue-50 text-blue-700 text-xs font-bold rounded-md mb-1.5 border border-blue-200">方案 C</span>
                                 <p class="font-bold text-slate-900 text-base">和解失敗後進入一審</p>
-                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed font-semibold">
+                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
                                     先進行短期協商和解。若經判定建商無和解誠意、調解失敗，則直接授權管委會委任律師提起第一審民事訴訟，向建商索賠。
                                 </p>
                             </div>
@@ -286,6 +314,7 @@
                     </div>
                 </div>
 
+                <!-- -->
                 <!-- 第三部分: 全局配套意願與大會連續授權調查 -->
                 <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
                     <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2 border-b border-slate-100 pb-3">
@@ -334,7 +363,7 @@
                             <label class="flex items-center gap-3.5 p-4 border border-slate-200 rounded-2xl hover:bg-slate-50/50 cursor-pointer transition">
                                 <input type="radio" name="cross-term" value="no" class="h-4 w-4 text-blue-600">
                                 <div>
-                                    <span class="font-bold text-sm text-slate-500">【不同意跨屆續告（跨屆不續告）】</span>
+                                    <span class="font-bold text-sm text-slate-500">【不同意跨屆續告】</span>
                                     <p class="text-xs text-slate-500 mt-0.5">當屆管委會任期屆滿時即終止法律程序，不再續訴，避免銜接斷層。</p>
                                 </div>
                             </label>
@@ -385,6 +414,7 @@
         <!-- ==================== 即時統計後台頁面 ==================== -->
         <section id="view-admin" class="hidden space-y-6">
             
+            <!-- -->
             <!-- 開票狀態統計指標卡 -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <!-- 總投票率 -->
@@ -530,6 +560,7 @@
                 </div>
             </div>
 
+            <!-- -->
             <!-- Google Sheets 串接指南 (幫助使用者自主設定) -->
             <div class="bg-slate-900 text-slate-300 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
                 <h3 class="font-bold text-white text-base flex items-center gap-2 border-b border-slate-800 pb-3">
@@ -564,6 +595,20 @@
 
     </main>
 
+    <!-- -->
+    <!-- 放大公文專用 Lightbox 燈箱 (無邊框放大) -->
+    <div id="lightbox-container" class="fixed inset-0 z-50 hidden bg-black/90 flex flex-col items-center justify-center p-4 transition-all duration-300 opacity-0">
+        <button id="btn-close-lightbox" class="absolute top-5 right-5 text-white/70 hover:text-white text-3xl transition duration-150 p-2">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="max-w-3xl w-full max-h-[85vh] flex items-center justify-center">
+            <img src="image_3f9c45.png" alt="新竹市政府消保官協商開會通知單" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl">
+        </div>
+        <div class="mt-4 text-white/80 text-sm font-semibold flex items-center gap-2">
+            <i class="fa-solid fa-triangle-exclamation text-yellow-400"></i> 新竹市政府消費爭議協商會議通知單 (民國114年11月4日官版公文佐證)
+        </div>
+    </div>
+
     <!-- 底部版權聲明 -->
     <footer class="bg-slate-900 text-slate-500 py-6 text-center border-t border-slate-800 text-xs mt-12">
         <p>© 2026 光華琚社區管理委員會. 本網頁表決系統符合完全客觀不涉偏袒原則</p>
@@ -572,6 +617,7 @@
     <!-- 自訂客製化 Toast 通知元件 -->
     <div id="toast-wrapper" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
+    <!-- -->
     <!-- ==================== JAVASCRIPT 資料互動與數據運算邏輯 ==================== -->
     <script>
         // ==========================================
@@ -591,7 +637,36 @@
         // 網頁初始載入
         window.onload = function() {
             renderStatistics();
+            setupLightbox();
         };
+
+        // ==== Lightbox 燈箱開關邏輯 ====
+        function setupLightbox() {
+            const btnOpen = document.getElementById('btn-open-lightbox');
+            const btnClose = document.getElementById('btn-close-lightbox');
+            const container = document.getElementById('lightbox-container');
+
+            btnOpen.addEventListener('click', () => {
+                container.classList.remove('hidden');
+                setTimeout(() => {
+                    container.classList.remove('opacity-0');
+                }, 50);
+            });
+
+            const closeAction = () => {
+                container.classList.add('opacity-0');
+                setTimeout(() => {
+                    container.classList.add('hidden');
+                }, 300);
+            };
+
+            btnClose.addEventListener('click', closeAction);
+            container.addEventListener('click', (e) => {
+                if (e.target === container) {
+                    closeAction();
+                }
+            });
+        }
 
         // ==== UI 分頁與視圖切換機制 ====
         const tabVote = document.getElementById('tab-vote');
