@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>光華琚社區 地下室漏水糾紛處理方案分析與表決系統</title>
+    
+    <!-- 載入 Tailwind CSS、Google 字型與 FontAwesome 圖示 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        community: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            600: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: #f8fafc;
+        }
+        /* 優化捲軸外觀 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        /* 卡片選取動態過渡 */
+        .option-card-active {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-slate-800 antialiased bg-slate-50">
+
+    <!-- 頂部精美導覽列 -->
+    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-100">
+                    <i class="fa-solid fa-hotel text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-lg leading-tight tracking-wide">光華琚社區</h1>
+                    <p class="text-xs text-slate-500 font-semibold tracking-wider">地下室漏水糾紛處理方案 · 線上表決系統</p>
+                </div>
+            </div>
+            
+            <!-- 導覽分頁按鈕 -->
+            <div class="flex bg-slate-100 p-1 rounded-xl border border-slate-200/60 w-full sm:w-auto">
+                <button id="tab-vote" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold rounded-lg transition-all duration-300 bg-white text-blue-600 shadow-sm">
+                    <i class="fa-solid fa-square-poll-horizontal"></i> 住戶投票登記
+                </button>
+                <button id="tab-admin" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold rounded-lg transition-all duration-300 text-slate-600 hover:text-slate-950">
+                    <i class="fa-solid fa-chart-pie"></i> 即時開票後台
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 狀態指示條 -->
+    <div class="bg-blue-600 text-white px-4 py-2 text-xs sm:text-sm text-center font-semibold shadow-inner flex items-center justify-center gap-2">
+        <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span>系統已啟用本機模擬資料庫，點擊右上角「即時開票後台」可同步觀看統計長條圖與表決名冊。</span>
+    </div>
+
+    <!-- 主框架 -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6">
+
+        <!-- ==================== 住戶線上投票頁面 ==================== -->
+        <section id="view-vote" class="space-y-6">
+            
+            <!-- 歷史調解未果背景看板 (放在方案 A 最前方，非任何方案) -->
+            <div class="bg-slate-900 text-slate-100 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-red-600/10 rounded-full blur-3xl"></div>
+                <div class="relative z-10 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-triangle-exclamation"></i> 既往官方調解未果紀錄 (重要背景說明)
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                            本社區管理委員會曾於<strong class="text-white font-bold">民國114年11月4日（星期二）上午10時</strong>，依法指派代表前往<strong class="text-white font-bold">新竹市政府消保官辦公室</strong>（新竹市中央路107號2樓），與建商<strong class="text-white font-bold">「理銘開發股份有限公司」</strong>進行官方正式的「消費爭議協商調解會議」（案號：278-1，發文字號：府消保字第1140170912號，佐證公文請參見大會備查文件 <code class="bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded text-xs font-mono">image_3f9c45.png</code>）。
+                        </p>
+                        <p class="text-sm sm:text-base text-red-400 font-semibold leading-relaxed">
+                            【現況說明】因該次消保調解建商並未給出實質根本之修繕解決方案，導致地下室漏水爭議迄今懸而未決。為防維權時效流失，本次大會特此提出後續方案，請全體區權人進行實質投票決議。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 精美財務精算與對比表 -->
+            <div class="bg-white border border-slate-200/80 rounded-3xl shadow-sm overflow-hidden">
+                <div class="border-b border-slate-100 bg-slate-50/50 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                        <i class="fa-solid fa-chart-line text-blue-600"></i> 各方案財務與時程精算對比
+                    </h3>
+                    <div class="flex items-center gap-1.5 text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+                        <i class="fa-solid fa-users"></i> 全社區 47 戶均攤試算
+                    </div>
+                </div>
+
+                <!-- 費用分攤小燈泡 -->
+                <div class="p-4 bg-amber-50 border-b border-amber-100 text-amber-800 text-xs sm:text-sm font-medium flex items-start gap-2.5">
+                    <i class="fa-solid fa-lightbulb text-amber-500 mt-0.5 shrink-0"></i>
+                    <span><strong>費用分攤說明：</strong>本報告書內所有涉及「每戶分攤」之金額，為便利大會報告與直觀呈現，統一先以全社區 47 戶「均攤試算」表示。實際執行時，各戶最終負擔金額仍將依據大樓產權之「坪數比例」進行分攤。</span>
+                </div>
+
+                <!-- 表格 -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[750px]">
+                        <thead>
+                            <tr class="bg-slate-900 text-white text-xs font-bold uppercase border-b border-slate-800">
+                                <th class="p-4 w-[18%] text-center border-r border-slate-800">精算項目 / 方案</th>
+                                <th class="p-4 w-[20%] text-center">方案 A<br>不採取法律行動</th>
+                                <th class="p-4 w-[21%] text-center">方案 B<br>協商和解階段</th>
+                                <th class="p-4 w-[21%] text-center bg-blue-950">方案 C<br>和解失敗後進入一審</th>
+                                <th class="p-4 w-[20%] text-center">方案 D<br>若敗訴同意告到底</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-xs sm:text-sm divide-y divide-slate-100 text-slate-600">
+                            <tr>
+                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">預估時間成本</td>
+                                <td class="p-4 text-center text-slate-500">立即處理<br><span class="text-xs text-slate-400">(數週內完工)</span></td>
+                                <td class="p-4 text-center font-semibold text-amber-600">1 至 2 年<br><span class="text-xs text-slate-400 font-normal">(通常和解開 1~3 庭)</span></td>
+                                <td class="p-4 text-center font-semibold text-blue-600 bg-blue-50/20">2 至 5 年<br><span class="text-xs text-slate-400 font-normal">(進入正式訴訟程序)</span></td>
+                                <td class="p-4 text-center font-semibold text-red-600">2 至 5 年<br><span class="text-xs text-slate-400 font-normal">(若續告二三審將更長)</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">超過5庭計費機制<br><span class="text-[10px] text-slate-400 font-normal">(與管委會開會亦折算)</span></td>
+                                <td class="p-4 text-center text-slate-400">不適用</td>
+                                <td class="p-4 text-center font-medium">超過 5 庭時，每多 1 庭加收 2,000 元<br><span class="text-[10px] text-slate-400 font-normal">(與管委會開會亦算 1 庭)</span></td>
+                                <td class="p-4 text-center font-medium bg-blue-50/20">超過 5 庭時，每多 1 庭加收 2,000 元<br><span class="text-[10px] text-slate-400 font-normal">(與管委會開會亦算 1 庭)</span></td>
+                                <td class="p-4 text-center font-medium">超過 5 庭時，每多 1 庭加收 2,000 元<br><span class="text-[10px] text-slate-400 font-normal">(與管委會開會亦算 1 庭)</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">前期投入法律費</td>
+                                <td class="p-4 text-center">0 元</td>
+                                <td class="p-4 text-center">20,000 ~ 82,000 元<br><span class="text-xs text-slate-400">(視是否委任律師)</span></td>
+                                <td class="p-4 text-center font-semibold text-red-600 bg-blue-50/20">105,450 ~ 167,450 元起<br><span class="text-[10px] text-red-500 font-normal">(內含前期已付之和解成本)</span></td>
+                                <td class="p-4 text-center">追加二三審訴訟費<br><span class="text-xs text-slate-400">(每審級逐案增收費用)</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150 text-amber-900">法院土木鑑定費<br><span class="text-[10px] text-slate-400 font-normal">(須先由社區代墊)</span></td>
+                                <td class="p-4 text-center text-slate-400">0 元</td>
+                                <td class="p-4 text-center text-slate-400">0 元</td>
+                                <td class="p-4 text-center font-bold text-amber-600 bg-blue-50/20">預估 150,000 元<br><span class="text-[10px] text-slate-400 font-normal">(由社區先全額代墊)</span></td>
+                                <td class="p-4 text-center">150,000 元<br><span class="text-[10px] text-slate-400 font-normal">(重啟鑑定則重複追加)</span></td>
+                            </tr>
+                            <tr class="bg-emerald-50/30">
+                                <td class="p-4 font-bold bg-emerald-100/40 text-emerald-900 text-center border-r border-emerald-200">⚖️ 成功結局<br><span class="text-[10px] font-normal text-emerald-600">(勝訴或和解成功)</span></td>
+                                <td class="p-4 text-center text-slate-400">不適用<br><span class="text-xs text-slate-400">(無向建商爭取)</span></td>
+                                <td class="p-4 text-center text-emerald-700 font-bold">建商修繕並退鑑定費<br><span class="text-xs font-normal text-slate-500">每戶承擔律師費：</span><br><span class="text-sm">425 ~ 1,745 元</span></td>
+                                <td class="p-4 text-center text-emerald-700 font-bold bg-emerald-50/10">判決建商賠償退鑑定費<br><span class="text-xs font-normal text-slate-500">每戶承擔律師費：</span><br><span class="text-sm">1,489 ~ 2,340 元</span></td>
+                                <td class="p-4 text-center text-emerald-700 font-bold">終局勝訴建商賠償<br><span class="text-xs font-normal text-slate-500">每戶承擔累計律師費：</span><br><span class="text-sm">3,000 ~ 5,000 元</span></td>
+                            </tr>
+                            <tr class="bg-rose-50/30">
+                                <td class="p-4 font-bold bg-rose-100/40 text-rose-900 text-center border-r border-rose-200">❌ 失敗結局<br><span class="text-[10px] font-normal text-rose-600">(敗訴或和解破局)</span></td>
+                                <td class="p-4 text-center text-rose-700 font-bold">社區自理修繕<br><span class="text-xs font-normal text-slate-500">修繕費總計約 13.6 萬：</span><br><span class="text-sm">每戶分攤 2,894 元</span></td>
+                                <td class="p-4 text-center text-rose-700 font-bold">協商和解破局且自修<br><span class="text-xs font-normal text-slate-500">律師費+社區修繕費：</span><br><span class="text-sm">每戶分攤 3,319 ~ 4,638 元</span></td>
+                                <td class="p-4 text-center text-rose-700 font-bold bg-rose-50/10">訴訟失敗且修繕自理<br><span class="text-xs font-normal text-slate-500">律師+鑑定+自修：</span><br><span class="text-sm">每戶分攤 8,319 ~ 9,638 元</span></td>
+                                <td class="p-4 text-center text-rose-700 font-bold">終局敗訴修繕自理<br><span class="text-xs font-normal text-slate-500">累計歷審總法律訴訟費：</span><br><span class="text-sm">每戶分攤高達 15,000 元以上</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 實體表單 -->
+            <form id="vote-form" class="space-y-6">
+                
+                <!-- 填表人實名登記 -->
+                <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-5">
+                    <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2 border-b border-slate-100 pb-3">
+                        <span class="w-7 h-7 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm">1</span>
+                        住戶實名登記 (供大會名冊識別)
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1.5">戶別 / 棟別樓層 <span class="text-red-500">*</span></label>
+                            <input type="text" id="reg-unit" placeholder="例：A棟12樓之2" required
+                                class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1.5">區權人 / 住戶姓名 <span class="text-red-500">*</span></label>
+                            <input type="text" id="reg-name" placeholder="請填寫完整姓名" required
+                                class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1.5">聯絡電話 <span class="text-red-500">*</span></label>
+                            <input type="tel" id="reg-phone" placeholder="例：0912-345678" required
+                                class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 方案表決卡片清單 (四選一，無子項) -->
+                <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-5">
+                    <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2 border-b border-slate-100 pb-3">
+                        <span class="w-7 h-7 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm">2</span>
+                        後續處理方案大會表決 (請四選一)
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 gap-4">
+                        <!-- 方案 A -->
+                        <label class="relative flex items-start gap-4 p-5 border border-slate-200 rounded-2xl hover:bg-slate-50/50 transition-all duration-300 cursor-pointer group" id="card-option-A">
+                            <div class="flex items-center h-5 mt-1.5">
+                                <input type="radio" name="vote-option" value="A" required class="h-4.5 w-4.5 text-blue-600 border-slate-300 focus:ring-blue-500 cursor-pointer">
+                            </div>
+                            <div class="space-y-1">
+                                <span class="inline-flex px-2.5 py-0.5 bg-slate-100 text-slate-700 text-xs font-bold rounded-md mb-1.5 border border-slate-200">方案 A</span>
+                                <p class="font-bold text-slate-900 text-base">不採取法律行動（不告）</p>
+                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                    自行委外進行修繕，總修繕費由社區住戶依坪數比例分攤。本方案將完全放棄對建商理銘開發進行任何形式之法律訴訟追討，案件直接結案。
+                                </p>
+                            </div>
+                        </label>
+
+                        <!-- 方案 B -->
+                        <label class="relative flex items-start gap-4 p-5 border border-slate-200 rounded-2xl hover:bg-slate-50/50 transition-all duration-300 cursor-pointer group" id="card-option-B">
+                            <div class="flex items-center h-5 mt-1.5">
+                                <input type="radio" name="vote-option" value="B" class="h-4.5 w-4.5 text-blue-600 border-slate-300 focus:ring-blue-500 cursor-pointer">
+                            </div>
+                            <div class="space-y-1">
+                                <span class="inline-flex px-2.5 py-0.5 bg-amber-50 text-amber-700 text-xs font-bold rounded-md mb-1.5 border border-amber-200">方案 B</span>
+                                <p class="font-bold text-slate-900 text-base">協商和解階段</p>
+                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                    暫不進入正式法院民事诉訟。優先委請律師撰寫發函書狀、提供諮詢，並嘗試在訴訟外由社區與建商代表達成和解共識、安排和解修繕。
+                                </p>
+                            </div>
+                        </label>
+
+                        <!-- 方案 C -->
+                        <label class="relative flex items-start gap-4 p-5 border border-slate-200 rounded-2xl hover:bg-slate-50/50 transition-all duration-300 cursor-pointer group" id="card-option-C">
+                            <div class="flex items-center h-5 mt-1.5">
+                                <input type="radio" name="vote-option" value="C" class="h-4.5 w-4.5 text-blue-600 border-slate-300 focus:ring-blue-500 cursor-pointer">
+                            </div>
+                            <div class="space-y-1">
+                                <span class="inline-flex px-2.5 py-0.5 bg-blue-50 text-blue-700 text-xs font-bold rounded-md mb-1.5 border border-blue-200">方案 C</span>
+                                <p class="font-bold text-slate-900 text-base">和解失敗後進入一審</p>
+                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed font-semibold">
+                                    先進行短期協商和解。若經判定建商無和解誠意、調解失敗，則直接授權管委會委任律師提起第一審民事訴訟，向建商索賠。
+                                </p>
+                            </div>
+                        </label>
+
+                        <!-- 方案 D -->
+                        <label class="relative flex items-start gap-4 p-5 border border-slate-200 rounded-2xl hover:bg-slate-50/50 transition-all duration-300 cursor-pointer group" id="card-option-D">
+                            <div class="flex items-center h-5 mt-1.5">
+                                <input type="radio" name="vote-option" value="D" class="h-4.5 w-4.5 text-blue-600 border-slate-300 focus:ring-blue-500 cursor-pointer">
+                            </div>
+                            <div class="space-y-1">
+                                <span class="inline-flex px-2.5 py-0.5 bg-red-50 text-red-700 text-xs font-bold rounded-md mb-1.5 border border-red-200">方案 D</span>
+                                <p class="font-bold text-slate-900 text-base">若敗訴同意告到底</p>
+                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                    訴訟底牌。不論民事一審結果如何，若一審判決對社區不利，大會連續授權管委會續提二審、三審上訴到底。全體明確知悉上訴各審級將陸續產生大幅訴訟與裁判成本。
+                                </p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 第三部分: 全局配套意願與大會連續授權調查 -->
+                <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+                    <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2 border-b border-slate-100 pb-3">
+                        <span class="w-7 h-7 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm">3</span>
+                        全局配套意願與大會連續授權調查 (不論勾選何方案皆須填寫)
+                    </h3>
+                    
+                    <!-- 調查 1 -->
+                    <div class="space-y-3">
+                        <label class="block text-sm sm:text-base font-bold text-slate-800 leading-tight">
+                            項次 (1) 您個人是否願意出席調解、出庭談判，或參與後續與管委會之案件進度會議？ <span class="text-red-500">*</span>
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label class="flex items-center gap-3.5 p-4 border border-slate-200 rounded-2xl hover:bg-slate-50/50 cursor-pointer transition">
+                                <input type="radio" name="attend-willing" value="yes" required class="h-4 w-4 text-blue-600">
+                                <div>
+                                    <span class="font-bold text-sm text-slate-900">【願意出席】</span>
+                                    <p class="text-xs text-slate-500 mt-0.5">本人有意願，後續願意抽空親自出席調解、出庭應訊或開會。</p>
+                                </div>
+                            </label>
+                            <label class="flex items-center gap-3.5 p-4 border border-slate-200 rounded-2xl hover:bg-slate-50/50 cursor-pointer transition">
+                                <input type="radio" name="attend-willing" value="no" class="h-4 w-4 text-blue-600">
+                                <div>
+                                    <span class="font-bold text-sm text-slate-500">【不願意 / 無法出席】</span>
+                                    <p class="text-xs text-slate-500 mt-0.5">因公私繁忙無法出席，授權大會表決結果執行並配合出資。</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr class="border-slate-100">
+
+                    <!-- 調查 2 -->
+                    <div class="space-y-3">
+                        <label class="block text-sm sm:text-base font-bold text-slate-800 leading-tight">
+                            項次 (2) 本漏水案件若進入法律程序，其審理時間極可能跨越本屆管委會任期，請問跨屆改選時，是否採取「跨屆續告」機制？ <span class="text-red-500">*</span>
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label class="flex items-center gap-3.5 p-4 border border-slate-200 rounded-2xl hover:bg-slate-50/50 cursor-pointer transition">
+                                <input type="radio" name="cross-term" value="yes" required class="h-4 w-4 text-blue-600">
+                                <div>
+                                    <span class="font-bold text-sm text-slate-900">【同意跨屆續告】</span>
+                                    <p class="text-xs text-slate-500 mt-0.5">官司程序不受管委會改選影響，授權由新任主委依法承接程序繼續維權。</p>
+                                </div>
+                            </label>
+                            <label class="flex items-center gap-3.5 p-4 border border-slate-200 rounded-2xl hover:bg-slate-50/50 cursor-pointer transition">
+                                <input type="radio" name="cross-term" value="no" class="h-4 w-4 text-blue-600">
+                                <div>
+                                    <span class="font-bold text-sm text-slate-500">【不同意跨屆續告（跨屆不續告）】</span>
+                                    <p class="text-xs text-slate-500 mt-0.5">當屆管委會任期屆滿時即終止法律程序，不再續訴，避免銜接斷層。</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 提交動作區 -->
+                <div class="flex flex-col items-center gap-4 py-4">
+                    <button type="submit" id="btn-submit"
+                        class="w-full sm:w-80 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-100 active:scale-95 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> 提交線上表決單
+                    </button>
+                    <p class="text-xs text-slate-400 text-center max-w-lg leading-relaxed">
+                        * 點擊提交即代表您已充分詳閱四大方案之預估財務風險精算。本表單採取區權實名制提交，資料將即時更新至社區統計名冊。
+                    </p>
+                </div>
+
+            </form>
+
+            <!-- 提交成功畫面 (預設隱藏) -->
+            <div id="vote-success" class="hidden bg-white border border-slate-200 rounded-3xl p-8 shadow-sm flex flex-col items-center justify-center text-center space-y-6 max-w-xl mx-auto py-12">
+                <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center text-3xl shadow-inner">
+                    <i class="fa-solid fa-circle-check animate-bounce"></i>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="font-bold text-slate-900 text-xl sm:text-2xl">線上表決提交成功！</h3>
+                    <p class="text-sm text-slate-500">感謝您的熱心參與，本戶之表決結果已同步存入大會系統。</p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-5 w-full text-left text-xs sm:text-sm border border-slate-100 divide-y divide-slate-200">
+                    <div class="py-2.5 flex justify-between"><span class="text-slate-500 font-semibold">填表人姓名：</span><span class="font-bold text-slate-800" id="success-name">---</span></div>
+                    <div class="py-2.5 flex justify-between"><span class="text-slate-500 font-semibold">所登記戶別：</span><span class="font-bold text-slate-800" id="success-unit">---</span></div>
+                    <div class="py-2.5 flex justify-between"><span class="text-slate-500 font-semibold">已表決方案：</span><span class="font-bold text-blue-600" id="success-option">---</span></div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 w-full">
+                    <button id="btn-view-results" class="flex-1 py-3 bg-blue-50 hover:bg-blue-100 text-blue-600 font-bold text-sm rounded-xl transition">
+                        <i class="fa-solid fa-chart-pie mr-1"></i> 前往統計看板
+                    </button>
+                    <button id="btn-vote-again" class="flex-1 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm rounded-xl transition">
+                        <i class="fa-solid fa-arrow-rotate-left mr-1"></i> 填寫另一棟戶
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ==================== 即時統計後台頁面 ==================== -->
+        <section id="view-admin" class="hidden space-y-6">
+            
+            <!-- 開票狀態統計指標卡 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- 總投票率 -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex items-center justify-between">
+                    <div class="space-y-1">
+                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">大會總已表決戶</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-3xl font-extrabold text-slate-900" id="stat-total-votes">0</span>
+                            <span class="text-sm font-semibold text-slate-400">/ 47 戶</span>
+                        </div>
+                        <p class="text-xs text-slate-500" id="stat-turnout-rate">開票率：0.0%</p>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                </div>
+
+                <!-- 願意出席調解 -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex items-center justify-between">
+                    <div class="space-y-1">
+                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">本人願意出庭代表</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-3xl font-extrabold text-emerald-600" id="stat-attend-count">0</span>
+                            <span class="text-sm font-semibold text-slate-400">戶</span>
+                        </div>
+                        <p class="text-xs text-slate-500" id="stat-attend-rate">代表出席意願率：0.0%</p>
+                    </div>
+                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                </div>
+
+                <!-- 同意跨屆續告 -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex items-center justify-between">
+                    <div class="space-y-1">
+                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">同意案件跨屆續辦</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-3xl font-extrabold text-indigo-600" id="stat-crossterm-count">0</span>
+                            <span class="text-sm font-semibold text-slate-400">戶</span>
+                        </div>
+                        <p class="text-xs text-slate-500" id="stat-crossterm-rate">跨屆交接同意率：0.0%</p>
+                    </div>
+                    <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
+                        <i class="fa-solid fa-arrows-spin"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 四大方案得票分布長條圖 -->
+            <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+                <div class="border-b border-slate-100 pb-4 flex justify-between items-center">
+                    <h3 class="font-bold text-slate-900 text-base sm:text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-chart-column text-blue-600"></i> 四大漏水處置方案 - 得票即時動態分布
+                    </h3>
+                    <div class="flex items-center gap-2">
+                        <button id="btn-load-mock" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold rounded-xl transition">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> 載入社區模擬票數
+                        </button>
+                        <span class="text-xs font-semibold text-slate-400" id="last-update-time">最後更新：剛才</span>
+                    </div>
+                </div>
+
+                <!-- 長條圖繪製 -->
+                <div class="space-y-5">
+                    <!-- 方案 A -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-xs sm:text-sm">
+                            <span class="font-bold text-slate-700">方案 A : 不採取法律行動（不告）</span>
+                            <span class="font-extrabold text-slate-600" id="bar-label-A">0 票 (0.0%)</span>
+                        </div>
+                        <div class="h-4.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                            <div id="bar-A" class="h-full bg-slate-500 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- 方案 B -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-xs sm:text-sm">
+                            <span class="font-bold text-amber-800">方案 B : 協商和解階段</span>
+                            <span class="font-extrabold text-amber-700" id="bar-label-B">0 票 (0.0%)</span>
+                        </div>
+                        <div class="h-4.5 w-full bg-amber-50 rounded-full overflow-hidden">
+                            <div id="bar-B" class="h-full bg-amber-500 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- 方案 C -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-xs sm:text-sm">
+                            <span class="font-bold text-blue-900">方案 C : 和解失敗後進入一審</span>
+                            <span class="font-extrabold text-blue-600" id="bar-label-C">0 票 (0.0%)</span>
+                        </div>
+                        <div class="h-4.5 w-full bg-blue-50 rounded-full overflow-hidden">
+                            <div id="bar-C" class="h-full bg-blue-600 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- 方案 D -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-xs sm:text-sm">
+                            <span class="font-bold text-red-800">方案 D : 若敗訴同意告到底</span>
+                            <span class="font-extrabold text-red-600" id="bar-label-D">0 票 (0.0%)</span>
+                        </div>
+                        <div class="h-4.5 w-full bg-red-50 rounded-full overflow-hidden">
+                            <div id="bar-D" class="h-full bg-red-600 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 住戶登記名冊 -->
+            <div class="bg-white border border-slate-200 rounded-3xl shadow-sm overflow-hidden">
+                <div class="border-b border-slate-100 bg-slate-50 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-blue-600"></i> 已表決區權人名冊列表 (即時資料庫)
+                    </h3>
+                    <div class="flex items-center gap-2 w-full sm:w-auto">
+                        <input type="text" id="admin-search" placeholder="搜尋住戶姓名或戶別..."
+                            class="px-4 py-1.5 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none w-full sm:w-48 transition">
+                        <button id="btn-export-csv" class="px-3 py-1.5 bg-slate-900 hover:bg-slate-850 text-white text-xs font-bold rounded-xl transition flex items-center gap-1 shrink-0">
+                            <i class="fa-solid fa-copy"></i> 複製 CSV 數據
+                        </button>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[700px]">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-600 text-xs font-bold uppercase border-b border-slate-200">
+                                <th class="p-3.5">姓名</th>
+                                <th class="p-3.5">戶別</th>
+                                <th class="p-3.5">聯絡電話</th>
+                                <th class="p-3.5 text-center">表決方案</th>
+                                <th class="p-3.5 text-center">出席意願</th>
+                                <th class="p-3.5 text-center">跨屆續告</th>
+                                <th class="p-3.5 text-right">時間</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vote-table-body" class="text-xs divide-y divide-slate-100 text-slate-700">
+                            <!-- 透過 JavaScript 動態渲染資料列 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Google Sheets 串接指南 (幫助使用者自主設定) -->
+            <div class="bg-slate-900 text-slate-300 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
+                <h3 class="font-bold text-white text-base flex items-center gap-2 border-b border-slate-800 pb-3">
+                    <i class="fa-solid fa-circle-nodes text-emerald-400 animate-pulse"></i> 如何將此精美網頁與 Google 試算表連動？
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                    本系統支援「無伺服器直接向雲端寫入數據」。只需 3 步驟，便可將網頁產生的實名投票數據自動同步至您的 Google 試算表中：
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
+                    <div class="bg-slate-800/50 rounded-2xl p-5 border border-slate-800">
+                        <span class="font-bold text-emerald-400 text-sm">步驟 1：新增試算表</span>
+                        <p class="mt-2 text-slate-400">
+                            建立一個 Google 試算表，將首行（A1~G1欄位）分別建立名稱：<code class="text-slate-300 bg-slate-800 px-1 rounded">Timestamp</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Name</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Unit</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Phone</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Option</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Attend</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">CrossTerm</code>。
+                        </p>
+                    </div>
+                    <div class="bg-slate-800/50 rounded-2xl p-5 border border-slate-800">
+                        <span class="font-bold text-emerald-400 text-sm">步驟 2：貼上 Apps Script</span>
+                        <p class="mt-2 text-slate-400">
+                            在試算表中點選「延伸功能」 > 「Apps Script」，將網頁底部註解中的 GAS 接收程式碼貼上，點擊「部署」為「網頁應用程式」，並設定存取權限為「任何人」。
+                        </p>
+                    </div>
+                    <div class="bg-slate-800/50 rounded-2xl p-5 border border-slate-800">
+                        <span class="font-bold text-emerald-400 text-sm">步驟 3：設置 API 連接線</span>
+                        <p class="mt-2 text-slate-400">
+                            將部署生成的 URL 網址複製，並貼入本 HTML 檔案底部的 <code class="text-slate-300 bg-slate-800 px-1 rounded">const GOOGLE_SCRIPT_URL = "您的URL網址"</code> 變數中，存檔後即完成實體串接！
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- 底部版權聲明 -->
+    <footer class="bg-slate-900 text-slate-500 py-6 text-center border-t border-slate-800 text-xs mt-12">
+        <p>© 2026 光華琚社區管理委員會. 本網頁表決系統符合完全客觀不涉偏袒原則</p>
+    </footer>
+
+    <!-- 自訂客製化 Toast 通知元件 -->
+    <div id="toast-wrapper" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- ==================== JAVASCRIPT 資料互動與數據運算邏輯 ==================== -->
+    <script>
+        // ==========================================
+        // 【雲端串接核心設定】
+        // 若您在 Google Sheet 部署好 Apps Script，請將網址貼在下方：
+        const GOOGLE_SCRIPT_URL = ""; 
+        // ==========================================
+
+        // 社區開票本機資料庫 (提供初始數據，方便開會現場即時演示)
+        let dbVotes = [
+            { id: "1", name: "王大明", unit: "A棟10樓之1", phone: "0912-111111", voteOption: "B", willingToAttend: "yes", crossTermContinue: "yes", timestamp: "2026-06-25T14:30:00.000Z" },
+            { id: "2", name: "張美琪", unit: "B棟3樓之2", phone: "0934-222222", voteOption: "C", willingToAttend: "no", crossTermContinue: "yes", timestamp: "2026-06-25T15:10:00.000Z" },
+            { id: "3", name: "李國雄", unit: "A棟5樓之3", phone: "0956-333333", voteOption: "D", willingToAttend: "yes", crossTermContinue: "yes", timestamp: "2026-06-25T15:45:00.000Z" },
+            { id: "4", name: "趙小鳳", unit: "B棟12樓之1", phone: "0978-444444", voteOption: "A", willingToAttend: "no", crossTermContinue: "no", timestamp: "2026-06-25T16:20:00.000Z" }
+        ];
+
+        // 網頁初始載入
+        window.onload = function() {
+            renderStatistics();
+        };
+
+        // ==== UI 分頁與視圖切換機制 ====
+        const tabVote = document.getElementById('tab-vote');
+        const tabAdmin = document.getElementById('tab-admin');
+        const viewVote = document.getElementById('view-vote');
+        const viewAdmin = document.getElementById('view-admin');
+
+        function switchTab(viewName) {
+            if (viewName === 'vote') {
+                tabVote.className = "flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold rounded-lg transition-all duration-300 bg-white text-blue-600 shadow-sm";
+                tabAdmin.className = "flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold rounded-lg transition-all duration-300 text-slate-600 hover:text-slate-950";
+                viewVote.classList.remove('hidden');
+                viewAdmin.classList.add('hidden');
+            } else {
+                tabVote.className = "flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold rounded-lg transition-all duration-300 text-slate-600 hover:text-slate-950";
+                tabAdmin.className = "flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold rounded-lg transition-all duration-300 bg-white text-blue-600 shadow-sm";
+                viewVote.classList.add('hidden');
+                viewAdmin.classList.remove('hidden');
+                renderStatistics();
+            }
+        }
+
+        tabVote.addEventListener('click', () => switchTab('vote'));
+        tabAdmin.addEventListener('click', () => switchTab('admin'));
+
+        // ==== 方案單選卡片點擊高亮互動 ====
+        const optionRadios = document.querySelectorAll('input[name="vote-option"]');
+        optionRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                ['A', 'B', 'C', 'D'].forEach(opt => {
+                    const card = document.getElementById(`card-option-${opt}`);
+                    card.className = "relative flex items-start gap-4 p-5 border border-slate-200 rounded-2xl hover:bg-slate-50/50 transition-all duration-300 cursor-pointer group";
+                });
+                if (radio.checked) {
+                    const selectedOpt = radio.value;
+                    const card = document.getElementById(`card-option-${selectedOpt}`);
+                    let borderClass = "border-slate-500 bg-slate-50/50 ring-2 ring-slate-400 option-card-active";
+                    if (selectedOpt === 'B') borderClass = "border-amber-500 bg-amber-50/30 ring-2 ring-amber-400 option-card-active";
+                    if (selectedOpt === 'C') borderClass = "border-blue-500 bg-blue-50/30 ring-2 ring-blue-400 option-card-active";
+                    if (selectedOpt === 'D') borderClass = "border-red-500 bg-rose-50/30 ring-2 ring-rose-400 option-card-active";
+                    card.className = `relative flex items-start gap-4 p-5 border rounded-2xl cursor-pointer transition-all duration-300 ${borderClass}`;
+                }
+            });
+        });
+
+        // ==== 住戶表決單表單提交 ====
+        const voteForm = document.getElementById('vote-form');
+        const voteSuccessDiv = document.getElementById('vote-success');
+
+        voteForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('reg-name').value.trim();
+            const unit = document.getElementById('reg-unit').value.trim();
+            const phone = document.getElementById('reg-phone').value.trim();
+            const voteOption = voteForm.querySelector('input[name="vote-option"]:checked')?.value;
+            const willingToAttend = voteForm.querySelector('input[name="attend-willing"]:checked')?.value;
+            const crossTermContinue = voteForm.querySelector('input[name="cross-term"]:checked')?.value;
+
+            if (!name || !unit || !phone || !voteOption || !willingToAttend || !crossTermContinue) {
+                showToast("⚠️ 請確實勾選填寫所有星號必填欄位", "warning");
+                return;
+            }
+
+            const btnSubmit = document.getElementById('btn-submit');
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i> 資料安全上傳中...`;
+
+            const newVote = {
+                id: "vote_" + Date.now(),
+                name: name,
+                unit: unit,
+                phone: phone,
+                voteOption: voteOption,
+                willingToAttend: willingToAttend,
+                crossTermContinue: crossTermContinue,
+                timestamp: new Date().toISOString()
+            };
+
+            // 如果設定了 Google Apps Script 接收端 URL
+            if (GOOGLE_SCRIPT_URL) {
+                try {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(newVote)
+                    });
+                    showToast("☁️ 已成功即時寫入雲端 Google 試算表！");
+                } catch (err) {
+                    console.error("雲端試算表傳輸失敗：", err);
+                    showToast("⚠️ 資料已存於本地資料庫，但寫入雲端試算表時發生通訊異常", "warning");
+                }
+            }
+
+            // 本地快取名冊累加
+            dbVotes.push(newVote);
+
+            setTimeout(() => {
+                document.getElementById('success-name').textContent = name;
+                document.getElementById('success-unit').textContent = unit;
+                
+                let optText = `方案 ${voteOption} - `;
+                if (voteOption === 'A') optText += "不採取法律行動";
+                if (voteOption === 'B') optText += "協商和解階段";
+                if (voteOption === 'C') optText += "和解失敗後進入一審";
+                if (voteOption === 'D') optText += "若敗訴同意告到底";
+                document.getElementById('success-option').textContent = optText;
+
+                voteForm.classList.add('hidden');
+                voteSuccessDiv.classList.remove('hidden');
+
+                btnSubmit.disabled = false;
+                btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> 提交線上表決單`;
+                showToast("🎉 表決提交成功！感謝您的參與！");
+            }, 850);
+        });
+
+        // 重新填寫按鈕
+        document.getElementById('btn-vote-again').addEventListener('click', () => {
+            voteForm.reset();
+            ['A', 'B', 'C', 'D'].forEach(opt => {
+                const card = document.getElementById(`card-option-${opt}`);
+                card.className = "relative flex items-start gap-4 p-5 border border-slate-200 rounded-2xl hover:bg-slate-50/50 transition-all duration-300 cursor-pointer group";
+            });
+            voteSuccessDiv.classList.add('hidden');
+            voteForm.classList.remove('hidden');
+        });
+
+        document.getElementById('btn-view-results').addEventListener('click', () => {
+            switchTab('admin');
+        });
+
+        // ==== 即時動態報表統計繪製 ====
+        function renderStatistics() {
+            const votes = dbVotes;
+            const totalCount = votes.length;
+
+            // 1. 更新統計看板
+            document.getElementById('stat-total-votes').textContent = totalCount;
+            const turnoutRate = ((totalCount / 47) * 100).toFixed(1);
+            document.getElementById('stat-turnout-rate').textContent = `投票率：${turnoutRate}% (全社區 47 戶)`;
+
+            // 出席普查
+            const attendCount = votes.filter(v => v.willingToAttend === 'yes').length;
+            document.getElementById('stat-attend-count').textContent = attendCount;
+            const attendRate = totalCount > 0 ? ((attendCount / totalCount) * 100).toFixed(1) : "0.0";
+            document.getElementById('stat-attend-rate').textContent = `代表出席意願率：${attendRate}%`;
+
+            // 跨屆普查
+            const crossCount = votes.filter(v => v.crossTermContinue === 'yes').length;
+            document.getElementById('stat-crossterm-count').textContent = crossCount;
+            const crossRate = totalCount > 0 ? ((crossCount / totalCount) * 100).toFixed(1) : "0.0";
+            document.getElementById('stat-crossterm-rate').textContent = `跨屆交接同意率：${crossRate}%`;
+
+            // 2. 統計各方案得票數並動態重繪長條圖
+            const counts = { A: 0, B: 0, C: 0, D: 0 };
+            votes.forEach(v => {
+                if (counts[v.voteOption] !== undefined) {
+                    counts[v.voteOption]++;
+                }
+            });
+
+            ['A', 'B', 'C', 'D'].forEach(opt => {
+                const optCount = counts[opt];
+                const optPercent = totalCount > 0 ? ((optCount / totalCount) * 100).toFixed(1) : "0.0";
+                
+                document.getElementById(`bar-label-${opt}`).textContent = `${optCount} 票 (${optPercent}%)`;
+                document.getElementById(`bar-${opt}`).style.width = `${optPercent}%`;
+            });
+
+            // 3. 渲染底層住戶實名登記表格
+            renderTable();
+
+            // 更新時間
+            const now = new Date();
+            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+            document.getElementById('last-update-time').textContent = `最後更新：${timeStr}`;
+        }
+
+        // 名冊表格繪製與搜尋過濾
+        function renderTable() {
+            const tableBody = document.getElementById('vote-table-body');
+            const searchVal = document.getElementById('admin-search').value.toLowerCase().trim();
+
+            const filteredVotes = dbVotes.filter(v => {
+                return v.name.toLowerCase().includes(searchVal) || v.unit.toLowerCase().includes(searchVal);
+            });
+
+            if (filteredVotes.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="p-8 text-center text-slate-400 font-medium">
+                            沒有搜尋到相符的區權人登錄資料
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tableBody.innerHTML = filteredVotes.map(v => {
+                let badgeClass = "";
+                if (v.voteOption === 'A') badgeClass = "bg-slate-100 text-slate-600 border-slate-200";
+                if (v.voteOption === 'B') badgeClass = "bg-amber-50 text-amber-700 border-amber-200";
+                if (v.voteOption === 'C') badgeClass = "bg-blue-50 text-blue-700 border-blue-200";
+                if (v.voteOption === 'D') badgeClass = "bg-red-50 text-red-700 border-red-200";
+
+                const date = new Date(v.timestamp);
+                const formatTime = `${date.getMonth() + 1}/${date.getDate()} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+
+                return `
+                    <tr class="hover:bg-slate-50/50 transition-all">
+                        <td class="p-3.5 font-bold text-slate-800">${escapeHTML(v.name)}</td>
+                        <td class="p-3.5 font-semibold text-slate-600">${escapeHTML(v.unit)}</td>
+                        <td class="p-3.5 text-slate-500 font-mono">${escapeHTML(v.phone)}</td>
+                        <td class="p-3.5 text-center">
+                            <span class="px-2.5 py-0.5 rounded-lg text-xs font-bold border ${badgeClass}">
+                                方案 ${v.voteOption}
+                            </span>
+                        </td>
+                        <td class="p-3.5 text-center">
+                            ${v.willingToAttend === 'yes' 
+                                ? '<span class="text-emerald-600 font-bold"><i class="fa-solid fa-circle-check mr-1"></i>願意</span>' 
+                                : '<span class="text-slate-400"><i class="fa-solid fa-circle-xmark mr-1"></i>不便</span>'}
+                        </td>
+                        <td class="p-3.5 text-center">
+                            ${v.crossTermContinue === 'yes' 
+                                ? '<span class="text-indigo-600 font-bold"><i class="fa-solid fa-link mr-1"></i>同意續告</span>' 
+                                : '<span class="text-slate-400">不同意</span>'}
+                        </td>
+                        <td class="p-3.5 text-right text-slate-400 font-mono">${formatTime}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 搜尋監聽
+        document.getElementById('admin-search').addEventListener('input', renderTable);
+
+        // 載入社區隨機票數
+        document.getElementById('btn-load-mock').addEventListener('click', () => {
+            const mockData = [
+                { id: "m1", name: "張國泰", unit: "A棟5樓之1", phone: "0911-333444", voteOption: "C", willingToAttend: "yes", crossTermContinue: "yes", timestamp: new Date().toISOString() },
+                { id: "m2", name: "陳秋月", unit: "A棟14樓之2", phone: "0921-555666", voteOption: "B", willingToAttend: "no", crossTermContinue: "yes", timestamp: new Date().toISOString() },
+                { id: "m3", name: "林昭榮", unit: "B棟2樓之3", phone: "0932-777888", voteOption: "A", willingToAttend: "no", crossTermContinue: "no", timestamp: new Date().toISOString() },
+                { id: "m4", name: "蔡瑞芳", unit: "B棟15樓之1", phone: "0955-111222", voteOption: "C", willingToAttend: "yes", crossTermContinue: "yes", timestamp: new Date().toISOString() },
+                { id: "m5", name: "賴進財", unit: "A棟9樓之3", phone: "0972-222888", voteOption: "D", willingToAttend: "yes", crossTermContinue: "no", timestamp: new Date().toISOString() }
+            ];
+            dbVotes = [...dbVotes, ...mockData];
+            renderStatistics();
+            showToast("✨ 已自動隨機匯入 5 筆住戶表決數據以供展示！");
+        });
+
+        // 複製 CSV 數據到剪貼簿 (用於一秒貼上 Excel 或 Google Sheet)
+        document.getElementById('btn-export-csv').addEventListener('click', () => {
+            if (dbVotes.length === 0) {
+                showToast("⚠️ 目前暫無住戶表決資料可供複製！", "warning");
+                return;
+            }
+
+            let csvContent = "姓名,戶別,聯絡電話,表決方案,願意出席,跨屆續告\n";
+            dbVotes.forEach(v => {
+                csvContent += `${v.name},${v.unit},${v.phone},方案${v.voteOption},${v.willingToAttend === 'yes' ? '願意' : '不便'},${v.crossTermContinue === 'yes' ? '同意' : '不同意'}\n`;
+            });
+
+            const textarea = document.createElement('textarea');
+            textarea.value = csvContent;
+            textarea.style.position = 'fixed';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast("📋 已將全社區 CSV 名冊數據複製到您的剪貼簿中！");
+            } catch (err) {
+                showToast("❌ 複製失敗，請手動圈選複製", "error");
+            }
+            document.body.removeChild(textarea);
+        });
+
+        // ==== 自訂精美 Toast 元件 ====
+        function showToast(message, type = "success") {
+            const wrapper = document.getElementById('toast-wrapper');
+            const toast = document.createElement('div');
+            
+            let bgClass = "bg-emerald-50 border-emerald-200 text-emerald-800 shadow-emerald-100";
+            let icon = '<i class="fa-solid fa-circle-check text-emerald-500"></i>';
+            if (type === "warning") {
+                bgClass = "bg-amber-50 border-amber-200 text-amber-800 shadow-amber-100";
+                icon = '<i class="fa-solid fa-triangle-exclamation text-amber-500"></i>';
+            } else if (type === "error") {
+                bgClass = "bg-rose-50 border-rose-200 text-rose-800 shadow-rose-100";
+                icon = '<i class="fa-solid fa-circle-xmark text-rose-500"></i>';
+            }
+
+            toast.className = `flex items-center gap-2.5 px-4 py-3 rounded-2xl border shadow-xl ${bgClass} transition-all duration-300 transform translate-y-2 opacity-0 pointer-events-auto max-w-sm text-sm font-bold`;
+            toast.innerHTML = `${icon} <span>${message}</span>`;
+            
+            wrapper.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3500);
+        }
+
+        // HTML 溢位過濾
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+    </script>
+
+    <!-- 
+    ============================================================
+    💡 Google Apps Script (GAS) 雲端接收端原始碼：
+    ============================================================
+    當您要串接 Google Sheets 時，請在該 Sheet 的 Apps Script 編輯器中貼上以下程式碼：
+    
+    function doPost(e) {
+      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+      var data = JSON.parse(e.postData.contents);
+      
+      // 在試算表最後一行新增數據
+      sheet.appendRow([
+        new Date(data.timestamp),     // 表決提交時間
+        data.name,                    // 區權人姓名
+        data.unit,                    // 登記棟別戶別
+        "'" + data.phone,             // 聯絡電話
+        "方案 " + data.voteOption,    // 勾選處置方案
+        data.willingToAttend == "yes" ? "願意出席" : "不便出席", // 代表出席意願
+        data.crossTermContinue == "yes" ? "同意續告" : "不同意續告" // 跨屆改選授權
+      ]);
+      
+      return ContentService.createTextOutput("Success").setMimeType(ContentService.MimeType.TEXT);
+    }
+    ============================================================
+    -->
+</body>
+</html>
