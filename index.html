@@ -55,7 +55,22 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
         }
+        /* 字體大小：透過 html 根字級連動 Tailwind rem 單位 */
+        html { font-size: 100%; }
+        html[data-font-size="medium"] { font-size: 112.5%; }
+        html[data-font-size="large"] { font-size: 125%; }
+        .font-size-btn-active {
+            background-color: #fff;
+            color: #2563eb;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        }
     </style>
+    <script>
+        (function () {
+            var size = localStorage.getItem('gwanghua-font-size') || 'standard';
+            document.documentElement.setAttribute('data-font-size', size);
+        })();
+    </script>
 </head>
 <body class="min-h-screen flex flex-col text-slate-800 antialiased bg-slate-50">
 
@@ -71,13 +86,24 @@
                 </div>
             </div>
             
-            <div class="flex bg-slate-100 p-1 rounded-xl border border-slate-200/60 w-full sm:w-auto">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+                <div class="flex items-center justify-center gap-2 bg-slate-100 p-1 rounded-xl border border-slate-200/60" role="group" aria-label="字體大小">
+                    <span class="hidden sm:inline-flex items-center gap-1 px-2 text-xs font-semibold text-slate-500">
+                        <i class="fa-solid fa-text-height"></i> 字體
+                    </span>
+                    <button type="button" data-font-size-btn="standard" class="font-size-btn flex-1 sm:flex-initial px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-300 font-size-btn-active">標準</button>
+                    <button type="button" data-font-size-btn="medium" class="font-size-btn flex-1 sm:flex-initial px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-300 text-slate-600 hover:text-slate-950">中</button>
+                    <button type="button" data-font-size-btn="large" class="font-size-btn flex-1 sm:flex-initial px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-300 text-slate-600 hover:text-slate-950">大</button>
+                </div>
+
+                <div class="flex bg-slate-100 p-1 rounded-xl border border-slate-200/60 w-full sm:w-auto">
                 <button id="tab-vote" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold rounded-lg transition-all duration-300 bg-white text-blue-600 shadow-sm">
                     <i class="fa-solid fa-square-poll-horizontal"></i> 住戶投票登記
                 </button>
                 <button id="tab-admin" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold rounded-lg transition-all duration-300 text-slate-600 hover:text-slate-950">
                     <i class="fa-solid fa-lock"></i> 即時開票後台
                 </button>
+            </div>
             </div>
         </div>
     </header>
@@ -605,10 +631,34 @@
 
         // 網頁初始載入
         window.onload = function() {
+            setupFontSizeToggle();
             renderStatistics();
             setupLightbox();
             setupSecurityAuth();
         };
+
+        // ==== 字體大小切換 ====
+        function setupFontSizeToggle() {
+            const FONT_SIZE_KEY = 'gwanghua-font-size';
+            const buttons = document.querySelectorAll('[data-font-size-btn]');
+
+            function applyFontSize(size) {
+                document.documentElement.setAttribute('data-font-size', size);
+                localStorage.setItem(FONT_SIZE_KEY, size);
+                buttons.forEach(btn => {
+                    const isActive = btn.dataset.fontSizeBtn === size;
+                    btn.classList.toggle('font-size-btn-active', isActive);
+                    btn.classList.toggle('text-slate-600', !isActive);
+                    btn.classList.toggle('hover:text-slate-950', !isActive);
+                    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+                });
+            }
+
+            applyFontSize(localStorage.getItem(FONT_SIZE_KEY) || 'standard');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => applyFontSize(btn.dataset.fontSizeBtn));
+            });
+        }
 
         // ==== Lightbox 燈箱開關邏輯 ====
         function setupLightbox() {
