@@ -126,15 +126,12 @@
                     <p class="text-sm sm:text-base text-red-800 leading-relaxed">
                         本社區管理委員會曾於民國114年11月4日，依法指派代表前往新竹市政府消保官辦公室，與建商「理銘開發股份有限公司」進行官方協商調解，惟建商無和解誠意、調解不歡而散（發文字號：府消保字第1140170912號），勝率已定調為 0% 結案。為保障社區權益，大會特此提出後續處置方案（方案A、B、C）供區權人進行實質投票。
                     </p>
-                    <a href="五月份收支明細.jpg" target="_blank" rel="noopener noreferrer"
-                       class="block mt-4 overflow-hidden rounded-2xl border border-red-200 bg-white shadow-sm hover:shadow-md transition group">
-                        <img src="五月份收支明細.jpg" alt="五月份收支明細"
-                             class="w-full max-w-[360px] h-auto object-cover transition duration-300 group-hover:scale-[1.02]">
-                        <div class="px-4 py-2 bg-red-50 border-t border-red-100 text-red-700 text-xs font-semibold flex items-center gap-2">
-                            <i class="fa-solid fa-image"></i>
-                            點擊可放大查看五月份收支明細
+                    <div data-lightbox-src="%E4%BA%94%E6%9C%88%E4%BB%BD%E6%94%B6%E6%94%AF%E6%98%8E%E7%B4%B0.jpg" data-lightbox-alt="五月份收支明細" data-lightbox-caption="五月份收支明細" class="block mt-4 relative group cursor-pointer overflow-hidden rounded-2xl border border-red-200 bg-white shadow-sm hover:shadow-md transition max-w-[360px]">
+                        <img src="%E4%BA%94%E6%9C%88%E4%BB%BD%E6%94%B6%E6%94%AF%E6%98%8E%E7%B4%B0.jpg" alt="五月份收支明細" class="w-full h-auto object-cover transition duration-300 group-hover:scale-[1.02]">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-semibold">
+                            <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點擊放大查看
                         </div>
-                    </a>
+                    </div>
                 </div>
                 <div class="shrink-0 flex flex-col items-center gap-2">
 					<span class="text-xs font-bold text-red-700 flex items-center gap-1">
@@ -669,17 +666,29 @@
             });
         }
 
-        // ==== Lightbox 燈箱開關邏輯 ====
+        // ==== Lightbox 燈箱開關邏輯 ====        
         function setupLightbox() {
             const btnOpen = document.getElementById('btn-open-lightbox');
+            const imageCards = document.querySelectorAll('[data-lightbox-src]');
             const btnClose = document.getElementById('btn-close-lightbox');
             const container = document.getElementById('lightbox-container');
+            const lightboxImage = container.querySelector('img');
+            const lightboxCaption = container.querySelector('.mt-4');
 
-            btnOpen.addEventListener('click', () => {
+            const openLightbox = (src, alt, caption) => {
+                lightboxImage.src = src;
+                lightboxImage.alt = alt || '';
+                lightboxCaption.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-yellow-400"></i> ${caption || ''}`;
                 container.classList.remove('hidden');
                 setTimeout(() => {
                     container.classList.remove('opacity-0');
                 }, 50);
+            };
+
+            imageCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    openLightbox(card.dataset.lightboxSrc, card.dataset.lightboxAlt, card.dataset.lightboxCaption);
+                });
             });
 
             const closeAction = () => {
