@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>??冗? ?唬?摰斗?瘞渡鳥蝝??獢???銵冽捱蝟餌絞</title>
+    <title>光華琚社區 地下室漏水糾紛處理方案分析與表決系統</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -35,7 +35,7 @@
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
             background-color: #f8fafc;
         }
-        /* ?芸??脰遘憭? */
+        /* 優化捲軸外觀 */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -50,12 +50,12 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
-        /* ?∠??詨????腹 */
+        /* 卡片選取動態過渡 */
         .option-card-active {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
         }
-        /* 摮?憭批?嚗? html ?孵?蝝?? Tailwind rem ?桐? */
+        /* 字體大小：透過 html 根字級連動 Tailwind rem 單位 */
         html { font-size: 100%; }
         html[data-font-size="medium"] { font-size: 112.5%; }
         html[data-font-size="large"] { font-size: 150%; }
@@ -81,27 +81,27 @@
                     <i class="fa-solid fa-hotel text-lg"></i>
                 </div>
                 <div>
-                    <h1 class="font-bold text-slate-900 text-lg leading-tight tracking-wide">??冗?</h1>
-                    <p class="text-xs text-slate-500 font-semibold tracking-wider">?唬?摰日瘞渲迄閮獢?繚 蝺?銵冽捱蝟餌絞</p>
+                    <h1 class="font-bold text-slate-900 text-lg leading-tight tracking-wide">光華琚社區</h1>
+                    <p class="text-xs text-slate-500 font-semibold tracking-wider">地下室防水訴訟方案 · 線上表決系統</p>
                 </div>
             </div>
             
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
-                <div class="flex items-center justify-center gap-2 bg-slate-100 p-1 rounded-xl border border-slate-200/60" role="group" aria-label="摮?憭批?">
+                <div class="flex items-center justify-center gap-2 bg-slate-100 p-1 rounded-xl border border-slate-200/60" role="group" aria-label="字體大小">
                     <span class="hidden sm:inline-flex items-center gap-1 px-2 text-xs font-semibold text-slate-500">
-                        <i class="fa-solid fa-text-height"></i> 摮?
+                        <i class="fa-solid fa-text-height"></i> 字體
                     </span>
-                    <button type="button" data-font-size-btn="standard" class="font-size-btn flex-1 sm:flex-initial px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-300 font-size-btn-active">璅?</button>
-                    <button type="button" data-font-size-btn="medium" class="font-size-btn flex-1 sm:flex-initial px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-300 text-slate-600 hover:text-slate-950">銝?/button>
-                    <button type="button" data-font-size-btn="large" class="font-size-btn flex-1 sm:flex-initial px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-300 text-slate-600 hover:text-slate-950">憭?/button>
+                    <button type="button" data-font-size-btn="standard" class="font-size-btn flex-1 sm:flex-initial px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-300 font-size-btn-active">標準</button>
+                    <button type="button" data-font-size-btn="medium" class="font-size-btn flex-1 sm:flex-initial px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-300 text-slate-600 hover:text-slate-950">中</button>
+                    <button type="button" data-font-size-btn="large" class="font-size-btn flex-1 sm:flex-initial px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-300 text-slate-600 hover:text-slate-950">大</button>
                 </div>
 
                 <div class="flex bg-slate-100 p-1 rounded-xl border border-slate-200/60 w-full sm:w-auto">
                 <button id="tab-vote" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold rounded-lg transition-all duration-300 bg-white text-blue-600 shadow-sm">
-                    <i class="fa-solid fa-square-poll-horizontal"></i> 雿?巨?餉?
+                    <i class="fa-solid fa-square-poll-horizontal"></i> 住戶投票登記
                 </button>
                 <button id="tab-admin" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold rounded-lg transition-all duration-300 text-slate-600 hover:text-slate-950">
-                    <i class="fa-solid fa-lock"></i> ?單??巨敺
+                    <i class="fa-solid fa-lock"></i> 即時開票後台
                 </button>
             </div>
             </div>
@@ -110,7 +110,7 @@
 
     <div class="bg-blue-600 text-white px-4 py-2 text-xs sm:text-sm text-center font-semibold shadow-inner flex items-center justify-center gap-2">
         <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span>蝟餌絞撌脣??冽璈芋?祈??澈嚗??銝????蟡典??啜蒂撽?蝞∠??∪?蝣澆?臬?甇亥???蟡具?/span>
+        <span>系統已啟用本機模擬資料庫，點擊右上角「即時開票後台」並驗證管理員密碼即可同步觀看開票。</span>
     </div>
 
     <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6">
@@ -120,20 +120,21 @@
             <div class="bg-red-50 border border-red-200 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row gap-6 items-center justify-between">
                 <div class="flex-1 space-y-3">
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-100 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wider">
-                        <i class="fa-solid fa-triangle-exclamation"></i> ?Ｗ?摰??蝝??
+                        <i class="fa-solid fa-triangle-exclamation"></i> 既往官方協商紀錄
                     </div>
-                    <h3 class="text-xl font-extrabold text-red-950">瘨?摰??輯矽閫?Ⅱ隤仃??(?寞? 0 甇瑕蝝??</h3>
+                    <h3 class="text-xl font-extrabold text-red-950">消保官行政調解確認失敗 (方案 0 歷史紀錄)</h3>
                     <p class="text-sm sm:text-base text-red-800 leading-relaxed">
-                        ?祉冗?蝞∠?憪??潭???14撟?1???伐?靘??晷隞?”???啁姘撣摨?靽?颲血摰歹??遣?????潸隞賣???詻脰?摰??隤輯圾嚗?撱箏??∪?閫???矽閫??甇∟嚗????摨?靽?蝚?140170912??嚗??歇摰矽??0% 蝯??靽?蝷曉?甈?嚗之?甇斗??箏?蝥?蝵格獢??寞?A??嚗??甈犖?脰?撖西釭?巨??                    </p>
+                        本社區管理委員會曾於民國114年11月4日，依法指派代表前往新竹市政府消保官辦公室，與建商「理銘開發股份有限公司」進行官方協商調解，惟建商無和解誠意、調解不歡而散（發文字號：府消保字第1140170912號），勝率已定調為 0% 結案。為保障社區權益，大會特此提出後續處置方案（方案A、B、C）供區權人進行實質投票。
+                    </p>
                 </div>
                 <div class="shrink-0 flex flex-col items-center gap-2">
 					<span class="text-xs font-bold text-red-700 flex items-center gap-1">
-					<i class="fa-solid fa-file-invoice"></i> 摰?祆?雿??辣
+					<i class="fa-solid fa-file-invoice"></i> 官方公文佐證附件
 					</span>
-				<div id="btn-open-lightbox" class="relative group cursor-pointer overflow-hidden rounded-2xl border border-red-200 shadow-md max-w-[200px] hover:shadow-lg transition">
-				<img src="https://raw.githubusercontent.com/rileyqyxlgrfqy4apc0f-spec/gwanghua-vote/main/S__67731475.jpg" alt="?啁姘撣摨?靽???????? class="w-full h-auto object-cover transform group-hover:scale-105 transition duration-300">
-                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-semibold">
-                            <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 暺??曉之?亦?
+				<div id="btn-open-lightbox" data-lightbox-src="https://raw.githubusercontent.com/rileyqyxlgrfqy4apc0f-spec/gwanghua-vote/main/S__67731475.jpg" data-lightbox-alt="新竹市政府消保官協商開會通知單" data-lightbox-caption="新竹市政府消費爭議協商會議通知單 (民國114年11月4日官版公文佐證)" class="relative group cursor-pointer overflow-hidden rounded-2xl border border-red-200 shadow-md max-w-[200px] hover:shadow-lg transition">
+				<img src="https://raw.githubusercontent.com/rileyqyxlgrfqy4apc0f-spec/gwanghua-vote/main/S__67731475.jpg" alt="新竹市政府消保官協商開會通知單" class="w-full h-auto object-cover transform group-hover:scale-105 transition duration-300">
+			<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-semibold">
+            <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點擊放大查看
                         </div>
                     </div>
                 </div>
@@ -142,10 +143,10 @@
             <div class="bg-white border border-slate-200/80 rounded-3xl shadow-sm overflow-hidden">
                 <div class="border-b border-slate-100 bg-slate-50/50 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
-                        <i class="fa-solid fa-chart-line text-blue-600"></i> ?獢???隡啗?鞎∪???撠?銵?
+                        <i class="fa-solid fa-chart-line text-blue-600"></i> 各方案綜合評估與財務預算對比表
                     </h3>
                     <div class="flex items-center gap-1.5 text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
-                        <i class="fa-solid fa-vault"></i> ?函冗?蝞∠?鞎餅暑摮??
+                        <i class="fa-solid fa-vault"></i> 全社區管理費活存支出
                     </div>
                 </div>
 
@@ -163,62 +164,74 @@
                 </div>
 
                 <div class="overflow-x-auto">
-                                <td colspan="5" class="p-2.5 font-bold text-slate-900 bg-slate-200/60 pl-4 text-xs tracking-wider uppercase"><i class="fa-solid fa-clock mr-1"></i> ??????隡?/td>
+                    <table class="w-full text-left border-collapse min-w-[900px]">
+                        <thead>
+                            <tr class="bg-slate-900 text-white text-xs font-bold uppercase border-b border-slate-800">
+                                <th class="p-4 w-[16%] text-center border-r border-slate-800">評估項目</th>
+                                <th class="p-4 w-[16%] text-center text-slate-300 bg-slate-950">方案 0 (歷史紀錄)<br><span class="text-[10px] font-normal text-red-300">消保官調解 (已失敗)</span></th>
+                                <th class="p-4 w-[18%] text-center text-slate-100">方案 A (直接修繕)<br><span class="text-[10px] font-normal text-slate-300">不訴訟 / 社區自理</span></th>
+                                <th class="p-4 w-[25%] text-center text-blue-300 bg-blue-950/20">方案 B (一審訴訟)<br><span class="text-[10px] font-normal text-blue-400">委託撰狀 或 律師全權代理出庭</span></th>
+                                <th class="p-4 w-[25%] text-center text-red-300 bg-red-950/20">方案 C (訴訟到底)<br><span class="text-[10px] font-normal text-red-400">上訴到底與高階全面鑑定</span></th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-xs sm:text-sm divide-y divide-slate-100 text-slate-600">
+                            <tr class="bg-slate-50/50">
+                                <td colspan="5" class="p-2.5 font-bold text-slate-900 bg-slate-200/60 pl-4 text-xs tracking-wider uppercase"><i class="fa-solid fa-clock mr-1"></i> 時程與狀態評估</td>
                             </tr>
                             <tr>
-                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">?桀????/td>
-                                <td class="p-4 text-center text-red-600 font-semibold bg-red-50/30">撌脖???蝯?</td>
-                                <td class="p-4 text-center text-slate-600 font-semibold">?湔?芾祥靽桀末</td>
-                                <td class="p-4 text-center text-blue-600 font-semibold bg-blue-50/10">甇???絲銝撖拇?鈭迄閮?/td>
-                                <td class="p-4 text-center text-red-600 font-semibold bg-red-50/10">?乩?撖拇?閮游?撱箏?銝迄?啣?</td>
+                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">目前狀態</td>
+                                <td class="p-4 text-center text-red-600 font-semibold bg-red-50/30">已不成立結案</td>
+                                <td class="p-4 text-center text-slate-600 font-semibold">直接自費修好</td>
+                                <td class="p-4 text-center text-blue-600 font-semibold bg-blue-50/10">正式提起一審民事訴訟</td>
+                                <td class="p-4 text-center text-red-600 font-semibold bg-red-50/10">若一審敗訴向建商上訴到底</td>
                             </tr>
                             <tr>
-                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">?摯???</td>
-                                <td class="p-4 text-center text-slate-400">蝝?2 ~ 3 ??<br><span class="text-xs text-red-500 font-semibold">(撌脫???</span></td>
-                                <td class="p-4 text-center text-slate-700 font-semibold">1-3 ??</td>
+                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">預估時間成本</td>
+                                <td class="p-4 text-center text-slate-400">約 2 ~ 3 個月<br><span class="text-xs text-red-500 font-semibold">(已消耗)</span></td>
+                                <td class="p-4 text-center text-slate-700 font-semibold">1-3 個月</td>
                                 <td class="p-4 text-center text-blue-600 font-semibold bg-blue-50/10">
-                                    <span class="text-slate-800 font-bold">銝撟港誑銝?/span><br>
-                                    <span class="text-xs text-slate-400 font-normal">(銝撖抵迄閮???蝔?)</span>
+                                    <span class="text-slate-800 font-bold">一年以上</span><br>
+                                    <span class="text-xs text-slate-400 font-normal">(一審訴訟與鑑定程序)</span>
                                 </td>
                                 <td class="p-4 text-center text-red-600 font-semibold bg-red-50/10">
-                                    <span class="text-slate-800 font-bold">?芰</span><br>
-                                    <span class="text-xs text-slate-400 font-normal">(頝典祟蝝??券??)</span>
+                                    <span class="text-slate-800 font-bold">未知</span><br>
+                                    <span class="text-xs text-slate-400 font-normal">(跨審級與全面鑑定)</span>
                                 </td>
                             </tr>
                             <tr class="border-b border-slate-200">
-                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">頝典?蝞∪?????/td>
-                                <td class="p-4 text-center text-slate-400">??(撌脩?獢?</td>
-                                <td class="p-4 text-center text-slate-400">??(?嗅?蝡閫?捱)</td>
-                                <td class="p-4 text-center text-blue-700 font-bold bg-blue-50/10">擃?/td>
-                                <td class="p-4 text-center text-red-600 font-semibold bg-red-50/10">璆菟? (頝?~3撅恣憪?</td>
+                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">跨屆管委會負擔</td>
+                                <td class="p-4 text-center text-slate-400">無 (已結案)</td>
+                                <td class="p-4 text-center text-slate-400">無 (當屆立刻解決)</td>
+                                <td class="p-4 text-center text-blue-700 font-bold bg-blue-50/10">高</td>
+                                <td class="p-4 text-center text-red-600 font-semibold bg-red-50/10">極高 (跨2~3屆管委)</td>
                             </tr>
 
                             <tr class="bg-slate-50/50">
-                                <td colspan="5" class="p-2.5 font-bold text-slate-900 bg-indigo-100 pl-4 text-xs tracking-wider uppercase"><i class="fa-solid fa-gavel mr-1"></i> ?? 憪遙敺葦???瘥?/td>
+                                <td colspan="5" class="p-2.5 font-bold text-slate-900 bg-indigo-100 pl-4 text-xs tracking-wider uppercase"><i class="fa-solid fa-gavel mr-1"></i> ⚖️ 委任律師狀態對比</td>
                             </tr>
                             <tr class="bg-indigo-50/10 border-b border-slate-200">
-                                <td class="p-4 font-bold bg-indigo-50/30 text-indigo-950 text-center border-r border-slate-150">敺葦隞???箏滬<br><span class="text-[10px] font-normal text-slate-500">(?臬憪遙敺葦)</span></td>
-                                <td class="p-4 text-center text-slate-500">??br><span class="text-xs text-slate-400">(瘨?摰???</span></td>
-                                <td class="p-4 text-center text-slate-500">??br><span class="text-xs text-slate-400">(?芾?憪??賢極)</span></td>
+                                <td class="p-4 font-bold bg-indigo-50/30 text-indigo-950 text-center border-r border-slate-150">律師代理出庭<br><span class="text-[10px] font-normal text-slate-500">(是否委任律師)</span></td>
+                                <td class="p-4 text-center text-slate-500">無<br><span class="text-xs text-slate-400">(消保官協商)</span></td>
+                                <td class="p-4 text-center text-slate-500">無<br><span class="text-xs text-slate-400">(自行委外施工)</span></td>
                                 <td class="p-4 bg-blue-50/10 text-center">
-                                    <span class="text-blue-700 font-bold">靘摨剜?憿??扳捱摰?/span><br>
-                                    <span class="text-[11px] text-slate-500">(?臬?憪遙?啁? ???冽?隞??)</span>
+                                    <span class="text-blue-700 font-bold">依出庭意願彈性決定</span><br>
+                                    <span class="text-[11px] text-slate-500">(可僅委任撰狀 或 全權代理)</span>
                                 </td>
-                                <td class="p-4 text-center text-red-700 font-bold bg-red-50/10"><i class="fa-solid fa-circle-check"></i> ??br><span class="text-xs text-red-600">(敺葦?冽?隞???箏滬)</span></td>
+                                <td class="p-4 text-center text-red-700 font-bold bg-red-50/10"><i class="fa-solid fa-circle-check"></i> 有<br><span class="text-xs text-red-600">(律師全權代理出庭)</span></td>
                             </tr>
 
                             <tr class="bg-slate-50/50">
-                                <td colspan="5" class="p-2.5 font-bold text-slate-900 bg-slate-200/60 pl-4 text-xs tracking-wider uppercase"><i class="fa-solid fa-wallet mr-1"></i> ? 蝷曉??祉????亥???閬芋</td>
+                                <td colspan="5" class="p-2.5 font-bold text-slate-900 bg-slate-200/60 pl-4 text-xs tracking-wider uppercase"><i class="fa-solid fa-wallet mr-1"></i> 💰 社區公積金提撥與預算規模</td>
                             </tr>
                             <tr class="border-b border-slate-200">
-                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">蝷曉?蝞∠?鞎駁?隡唳??br><span class="text-[10px] text-red-500 font-normal">(?勗蝛?撠?)</span></td>
-                                <td class="p-4 text-center font-mono">0 ??/td>
-                                <td class="p-4 text-center font-mono text-slate-700 font-bold"> 0<br><span class="text-[10px] text-slate-400 font-normal">(撌脣?蝞∠?鞎餅??</span></td>
+                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">社區管理費預估支出<br><span class="text-[10px] text-red-500 font-normal">(由公積金專戶提撥)</span></td>
+                                <td class="p-4 text-center font-mono">0 元</td>
+                                <td class="p-4 text-center font-mono text-slate-700 font-bold"> 0<br><span class="text-[10px] text-slate-400 font-normal">(已從管理費收取)</span></td>
                                 <td class="p-4 bg-blue-50/10 font-mono text-center">
-                                    <span class="text-blue-700 font-bold text-base">17.2??~ 23.5??/span><br>
-                                    <span class="text-[10px] text-slate-500">(?捱?澆?撣怠?隞餌?摨??恍?隡圈?摰祥??</span>
+                                    <span class="text-blue-700 font-bold text-base">17.2萬 ~ 23.5萬</span><br>
+                                    <span class="text-[10px] text-slate-500">(取決於律師委任程度/含預估鑑定費用)</span>
                                 </td>
-                                <td class="p-4 text-center font-mono text-red-700 font-black bg-red-50/10"> 擃銝撖拚?憿?<br><span class="text-[10px] text-red-500 font-normal">(?怠??典????摰?</span></td>
+                                <td class="p-4 text-center font-mono text-red-700 font-black bg-red-50/10"> 高於一審金額 <br><span class="text-[10px] text-red-500 font-normal">(含土木公會高階鑑定)</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -230,22 +243,22 @@
                 <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-5">
                     <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2 border-b border-slate-100 pb-3">
                         <span class="w-7 h-7 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm">1</span>
-                        雿撖血??餉? (靘之??????
+                        住戶實名登記 (供大會名冊識別)
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-1.5">?嗅 / 璉璅惜 <span class="text-red-500">*</span></label>
-                            <input type="text" id="reg-unit" placeholder="靘?A璉?2璅?2" required
+                            <label class="block text-sm font-bold text-slate-700 mb-1.5">戶別 / 棟別樓層 <span class="text-red-500">*</span></label>
+                            <input type="text" id="reg-unit" placeholder="例：A棟12樓之2" required
                                 class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-1.5">?甈犖 / 雿憪? <span class="text-red-500">*</span></label>
-                            <input type="text" id="reg-name" placeholder="隢‵撖怠??游??? required
+                            <label class="block text-sm font-bold text-slate-700 mb-1.5">區權人 / 住戶姓名 <span class="text-red-500">*</span></label>
+                            <input type="text" id="reg-name" placeholder="請填寫完整姓名" required
                                 class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-1.5">?舐窗?餉店 <span class="text-red-500">*</span></label>
-                            <input type="tel" id="reg-phone" placeholder="靘?0912-345678" required
+                            <label class="block text-sm font-bold text-slate-700 mb-1.5">聯絡電話 <span class="text-red-500">*</span></label>
+                            <input type="tel" id="reg-phone" placeholder="例：0912-345678" required
                                 class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm">
                         </div>
                     </div>
@@ -254,7 +267,7 @@
                 <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-5">
                     <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2 border-b border-slate-100 pb-3">
                         <span class="w-7 h-7 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm">2</span>
-                        敺????寞?憭扳?銵冽捱 (隢??訾?)
+                        後續處理方案大會表決 (請三選一)
                     </h3>
                     
                     <div class="grid grid-cols-1 gap-4">
@@ -263,10 +276,10 @@
                                 <input type="radio" name="vote-option" value="A" required class="h-4.5 w-4.5 text-blue-600 border-slate-300 focus:ring-blue-500 cursor-pointer">
                             </div>
                             <div class="space-y-1">
-                                <span class="inline-flex px-2.5 py-0.5 bg-slate-100 text-slate-700 text-xs font-bold rounded-md mb-1.5 border border-slate-200">?寞? A 繚 ?芾祥?芰?</span>
-                                <p class="font-bold text-slate-900 text-base">銝??敺???(?湔?芾祥靽桃?)</p>
+                                <span class="inline-flex px-2.5 py-0.5 bg-slate-100 text-slate-700 text-xs font-bold rounded-md mb-1.5 border border-slate-200">方案 A · 自費自理</span>
+                                <p class="font-bold text-slate-900 text-base">不採取法律行動 (直接自費修繕)</p>
                                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                                    ?暹?撠遣?蕭蝛嗆?敺痊隞颯?
+                                    放棄對建商追究法律責任。
                                 </p>
                             </div>
                         </label>
@@ -276,10 +289,10 @@
                                 <input type="radio" name="vote-option" value="B" class="h-4.5 w-4.5 text-blue-600 border-slate-300 focus:ring-blue-500 cursor-pointer">
                             </div>
                             <div class="space-y-1">
-                                <span class="inline-flex px-2.5 py-0.5 bg-blue-50 text-blue-700 text-xs font-bold rounded-md mb-1.5 border border-blue-200">?寞? B 繚 甇??韏瑁迄</span>
-                                <p class="font-bold text-slate-900 text-base">?絲銝撖拇?鈭迄閮?(敺葦憪遙蝔漲靘摨剜?憿捱摰?</p>
+                                <span class="inline-flex px-2.5 py-0.5 bg-blue-50 text-blue-700 text-xs font-bold rounded-md mb-1.5 border border-blue-200">方案 B · 正式起訴</span>
+                                <p class="font-bold text-slate-900 text-base">提起一審民事訴訟 (律師委任程度依出庭意願決定)</p>
                                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                                    甇??韏瑁迄閬?撱箏?鞈?靽桃?鞎餌?雿??靘踹摨哨?撠蝞∠?鞎餅?箏甈?閮?撣思誨???摯 23.5 ?穿?嚗雿??憿扛?芸摨哨?隢?銝隤踵嚗???憪?敺葦?啁?隞亦???蝞??摯 17.5 ?穿???
+                                    正式起訴要求建商賠償修繕費用。若住戶皆不便出庭，將由管理費支出全權委託律師代理（預估 23.5 萬）；若住戶有意願親自出庭（請見下方調查），則僅委託律師撰狀以節省預算（預估 17.5 萬）。
                                 </p>
                             </div>
                         </label>
@@ -289,10 +302,10 @@
                                 <input type="radio" name="vote-option" value="C" class="h-4.5 w-4.5 text-blue-600 border-slate-300 focus:ring-blue-500 cursor-pointer">
                             </div>
                             <div class="space-y-1">
-                                <span class="inline-flex px-2.5 py-0.5 bg-red-50 text-red-700 text-xs font-bold rounded-md mb-1.5 border border-red-200">?寞? C 繚 1撟港誑銝迄閮摨?/span>
-                                <p class="font-bold text-slate-900 text-base">?乩?撖拇?閮游???閮游摨?(銝阡脰??券蝯???)</p>
+                                <span class="inline-flex px-2.5 py-0.5 bg-red-50 text-red-700 text-xs font-bold rounded-md mb-1.5 border border-red-200">方案 C · 1年以上訴訟到底</span>
+                                <p class="font-bold text-slate-900 text-base">若一審敗訴同意上訴到底 (並進行全面結構鑑定)</p>
                                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                                    憪遙敺葦?脰??瑟???蝷曉?蝞∠?鞎餃蝛??擃?蝝?20 ?砍?隞乩?銋???蝞??怠?Ｗ??函?瑽批??券?摰祥嚗?????瘀??芯??恣?祥隤踵撞憯??憭扼?
+                                    委任律師進行長期抗戰。由社區管理費公積金提撥高達約 20 萬元以上之重金預算（含全面土木結構性安全鑑定費），時程最長，未來的管理費調漲壓力最大。
                                 </p>
                             </div>
                         </label>
@@ -302,26 +315,26 @@
                 <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
                     <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2 border-b border-slate-100 pb-3">
                         <span class="w-7 h-7 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm">3</span>
-                        ?典??????之?????隤踵 (銝??暸雿獢??‵撖?
+                        全局配套意願與大會連續授權調查 (不論勾選何方案皆須填寫)
                     </h3>
                     
                     <div class="space-y-3">
                         <label class="block text-sm sm:text-base font-bold text-slate-800 leading-tight">
-                            ?活 (1) ?典犖?臬憿???憭扳?瘙箄降閬芾?箏葉瘜滬?摨凋誨銵刻劑隢?????蝥?蝞∪???獢辣?脣漲?降嚗?<span class="text-red-500">*</span>
+                            項次 (1) 您個人是否願意配合大會決議親自出席法庭、出庭代表辯論，或參與後續與管委會之案件進度會議？ <span class="text-red-500">*</span>
                         </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <label class="flex items-center gap-3.5 p-4 border border-slate-200 rounded-2xl hover:bg-slate-50/50 cursor-pointer transition">
                                 <input type="radio" name="attend-willing" value="yes" required class="h-4 w-4 text-blue-600">
                                 <div>
-                                    <span class="font-bold text-sm text-slate-900">?????摨准?/span>
-                                    <p class="text-xs text-slate-500 mt-0.5">?砌犖??憿?敺??仿??寞? B嚗?撖抵迄閮?嚗??蝛箄扛?芸撣剜?摨剜?閮?憭扳??舀??憪??啁?嚗?6?穿??銵?/p>
+                                    <span class="font-bold text-sm text-slate-900">【願意配合出庭】</span>
+                                    <p class="text-xs text-slate-500 mt-0.5">本人有意願，後續若通過方案 B（一審訴訟），願意抽空親自出席法庭應訊，大會可採「僅委託撰狀（省6萬）」執行。</p>
                                 </div>
                             </label>
                             <label class="flex items-center gap-3.5 p-4 border border-slate-200 rounded-2xl hover:bg-slate-50/50 cursor-pointer transition">
                                 <input type="radio" name="attend-willing" value="no" class="h-4 w-4 text-blue-600">
                                 <div>
-                                    <span class="font-bold text-sm text-slate-900">??靘踹撣准?/span>
-                                    <p class="text-xs text-slate-500 mt-0.5">?蝘?敹瘜扛?芸摨哨??曉??冽?憪遙敺葦隞???箏葉嚗?甈之??甇斤??銵蒂??敺?蝞∠?鞎餉矽?氬?/p>
+                                    <span class="font-bold text-sm text-slate-900">【不便出席】</span>
+                                    <p class="text-xs text-slate-500 mt-0.5">因公私繁忙無法親自出庭，傾向全權委任律師代理出席，授權大會依此結果執行並配合後續管理費調整。</p>
                                 </div>
                             </label>
                         </div>
@@ -331,21 +344,21 @@
 
                     <div class="space-y-3">
                         <label class="block text-sm sm:text-base font-bold text-slate-800 leading-tight">
-                            ?活 (2) ?祆?瘞湔?隞嗉?脣瘜?蝔?嚗撖拍???璆萄?質楊頞撅恣憪?隞餅?嚗??楊撅?豢?嚗?行?楊撅????塚? <span class="text-red-500">*</span>
+                            項次 (2) 本漏水案件若進入法律程序，其審理時間極可能跨越本屆管委會任期，請問跨屆改選時，是否採取「跨屆續告」機制？ <span class="text-red-500">*</span>
                         </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <label class="flex items-center gap-3.5 p-4 border border-slate-200 rounded-2xl hover:bg-slate-50/50 cursor-pointer transition">
                                 <input type="radio" name="cross-term" value="yes" required class="h-4 w-4 text-blue-600">
                                 <div>
-                                    <span class="font-bold text-sm text-slate-900">???楊撅???/span>
-                                    <p class="text-xs text-slate-500 mt-0.5">摰蝔?銝?蝞∪???詨蔣?選????望隞颱蜓憪?瘜?亦?摨匱蝥雁甈?/p>
+                                    <span class="font-bold text-sm text-slate-900">【同意跨屆續告】</span>
+                                    <p class="text-xs text-slate-500 mt-0.5">官司程序不受管委會改選影響，授權由新任主委依法承接程序繼續維權。</p>
                                 </div>
                             </label>
                             <label class="flex items-center gap-3.5 p-4 border border-slate-200 rounded-2xl hover:bg-slate-50/50 cursor-pointer transition">
                                 <input type="radio" name="cross-term" value="no" class="h-4 w-4 text-blue-600">
                                 <div>
-                                    <span class="font-bold text-sm text-slate-900">????頝典?蝥???/span>
-                                    <p class="text-xs text-slate-500 mt-0.5">?嗅?蝞∪??遙??皛踵??喟?甇Ｘ?敺?摨?銝?蝥迄嚗???交撅扎?/p>
+                                    <span class="font-bold text-sm text-slate-900">【不同意跨屆續告】</span>
+                                    <p class="text-xs text-slate-500 mt-0.5">當屆管委會任期屆滿時即終止法律程序，不再續訴，避免銜接斷層。</p>
                                 </div>
                             </label>
                         </div>
@@ -355,10 +368,10 @@
                 <div class="flex flex-col items-center gap-4 py-4">
                     <button type="submit" id="btn-submit"
                         class="w-full sm:w-80 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-100 active:scale-95 transition flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i> ?漱蝺?銵冽捱??
+                        <i class="fa-solid fa-paper-plane"></i> 提交線上表決單
                     </button>
                     <p class="text-xs text-slate-400 text-center max-w-lg leading-relaxed">
-                        * 暺??漱?喃誨銵冽撌脣??底?勗??寞?銋?隡啗瓷??????銵典?∪??甈祕??漱嚗????單??湔?喟冗?蝯梯?????
+                        * 點擊提交即代表您已充分詳閱各方案之預估財務與時間成本。本表單採取區權實名制提交，資料將即時更新至社區統計名冊。
                     </p>
                 </div>
 
@@ -369,20 +382,20 @@
                     <i class="fa-solid fa-circle-check animate-bounce"></i>
                 </div>
                 <div class="space-y-2">
-                    <h3 class="font-bold text-slate-900 text-xl sm:text-2xl">蝺?銵冽捱?漱??嚗?/h3>
-                    <p class="text-sm text-slate-500">???函??勗???嚗?嗡?銵冽捱蝯?撌脣?甇亙??亙之?頂蝯晞?/p>
+                    <h3 class="font-bold text-slate-900 text-xl sm:text-2xl">線上表決提交成功！</h3>
+                    <p class="text-sm text-slate-500">感謝您的熱心參與，本戶之表決結果已同步存入大會系統。</p>
                 </div>
                 <div class="bg-slate-50 rounded-2xl p-5 w-full text-left text-xs sm:text-sm border border-slate-100 divide-y divide-slate-200">
-                    <div class="py-2.5 flex justify-between"><span class="text-slate-500 font-semibold">憛怨”鈭箏???</span><span class="font-bold text-slate-800" id="success-name">---</span></div>
-                    <div class="py-2.5 flex justify-between"><span class="text-slate-500 font-semibold">??餉??嗅嚗?/span><span class="font-bold text-slate-800" id="success-unit">---</span></div>
-                    <div class="py-2.5 flex justify-between"><span class="text-slate-500 font-semibold">撌脰”瘙箸獢?</span><span class="font-bold text-blue-600" id="success-option">---</span></div>
+                    <div class="py-2.5 flex justify-between"><span class="text-slate-500 font-semibold">填表人姓名：</span><span class="font-bold text-slate-800" id="success-name">---</span></div>
+                    <div class="py-2.5 flex justify-between"><span class="text-slate-500 font-semibold">所登記戶別：</span><span class="font-bold text-slate-800" id="success-unit">---</span></div>
+                    <div class="py-2.5 flex justify-between"><span class="text-slate-500 font-semibold">已表決方案：</span><span class="font-bold text-blue-600" id="success-option">---</span></div>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-3 w-full">
                     <button id="btn-view-results" class="flex-1 py-3 bg-blue-50 hover:bg-blue-100 text-blue-600 font-bold text-sm rounded-xl transition">
-                        <i class="fa-solid fa-lock mr-1"></i> 閫?????巨蝯梯?
+                        <i class="fa-solid fa-lock mr-1"></i> 解鎖前往開票統計
                     </button>
                     <button id="btn-vote-again" class="flex-1 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm rounded-xl transition">
-                        <i class="fa-solid fa-arrow-rotate-left mr-1"></i> 憛怠神?虫?璉
+                        <i class="fa-solid fa-arrow-rotate-left mr-1"></i> 填寫另一棟戶
                     </button>
                 </div>
             </div>
@@ -395,12 +408,12 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex items-center justify-between">
                     <div class="space-y-1">
-                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">憭扳?蝮賢歇銵冽捱??/span>
+                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">大會總已表決戶</span>
                         <div class="flex items-baseline gap-1">
                             <span class="text-3xl font-extrabold text-slate-900" id="stat-total-votes">0</span>
-                            <span class="text-sm font-semibold text-slate-400">/ 47 ??/span>
+                            <span class="text-sm font-semibold text-slate-400">/ 47 戶</span>
                         </div>
-                        <p class="text-xs text-slate-500" id="stat-turnout-rate">?巨??0.0%</p>
+                        <p class="text-xs text-slate-500" id="stat-turnout-rate">開票率：0.0%</p>
                     </div>
                     <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
                         <i class="fa-solid fa-users"></i>
@@ -409,12 +422,12 @@
 
                 <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex items-center justify-between">
                     <div class="space-y-1">
-                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">憿??箏滬 / 閮渲??箏葉隞?”</span>
+                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">願意出庭 / 訴訟出席代表</span>
                         <div class="flex items-baseline gap-1">
                             <span class="text-3xl font-extrabold text-emerald-600" id="stat-attend-count">0</span>
-                            <span class="text-sm font-semibold text-slate-400">??/span>
+                            <span class="text-sm font-semibold text-slate-400">戶</span>
                         </div>
-                        <p class="text-xs text-slate-500" id="stat-attend-rate">隞?”?箏葉????0.0%</p>
+                        <p class="text-xs text-slate-500" id="stat-attend-rate">代表出席意願率：0.0%</p>
                     </div>
                     <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
                         <i class="fa-solid fa-handshake"></i>
@@ -423,12 +436,12 @@
 
                 <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex items-center justify-between">
                     <div class="space-y-1">
-                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">??獢辣頝典?蝥齒</span>
+                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">同意案件跨屆續辦</span>
                         <div class="flex items-baseline gap-1">
                             <span class="text-3xl font-extrabold text-indigo-600" id="stat-crossterm-count">0</span>
-                            <span class="text-sm font-semibold text-slate-400">??/span>
+                            <span class="text-sm font-semibold text-slate-400">戶</span>
                         </div>
-                        <p class="text-xs text-slate-500" id="stat-crossterm-rate">頝典?鈭斗????0.0%</p>
+                        <p class="text-xs text-slate-500" id="stat-crossterm-rate">跨屆交接同意率：0.0%</p>
                     </div>
                     <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
                         <i class="fa-solid fa-arrows-spin"></i>
@@ -439,24 +452,24 @@
             <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
                 <div class="border-b border-slate-100 pb-4 flex justify-between items-center">
                     <h3 class="font-bold text-slate-900 text-base sm:text-lg flex items-center gap-2">
-                        <i class="fa-solid fa-chart-column text-blue-600"></i> 瞍偌?蔭?寞? - 敺巨?單?????
+                        <i class="fa-solid fa-chart-column text-blue-600"></i> 漏水處置方案 - 得票即時動態分布
                     </h3>
                     <div class="flex items-center gap-2">
                         <button id="btn-logout" class="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-600 text-xs font-bold rounded-xl transition flex items-center gap-1">
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i> 摰?餃
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> 安全登出
                         </button>
                         <button id="btn-load-mock" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold rounded-xl transition">
-                            <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> 頛璅⊥蟡冽
+                            <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> 載入模擬票數
                         </button>
-                        <span class="text-xs font-semibold text-slate-400 hidden sm:inline" id="last-update-time">?敺?堆???</span>
+                        <span class="text-xs font-semibold text-slate-400 hidden sm:inline" id="last-update-time">最後更新：剛才</span>
                     </div>
                 </div>
 
                 <div class="space-y-5">
                     <div class="space-y-2">
                         <div class="flex justify-between items-center text-xs sm:text-sm">
-                            <span class="font-bold text-slate-700">?寞? A : ?湔靽桃? (?芾祥?芰?)</span>
-                            <span class="font-extrabold text-slate-600" id="bar-label-A">0 蟡?(0.0%)</span>
+                            <span class="font-bold text-slate-700">方案 A : 直接修繕 (自費自理)</span>
+                            <span class="font-extrabold text-slate-600" id="bar-label-A">0 票 (0.0%)</span>
                         </div>
                         <div class="h-4.5 w-full bg-slate-100 rounded-full overflow-hidden">
                             <div id="bar-A" class="h-full bg-slate-500 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
@@ -465,8 +478,8 @@
 
                     <div class="space-y-2">
                         <div class="flex justify-between items-center text-xs sm:text-sm">
-                            <span class="font-bold text-blue-900">?寞? B : 銝撖拇?鈭迄閮?/span>
-                            <span class="font-extrabold text-blue-600" id="bar-label-B">0 蟡?(0.0%)</span>
+                            <span class="font-bold text-blue-900">方案 B : 一審民事訴訟</span>
+                            <span class="font-extrabold text-blue-600" id="bar-label-B">0 票 (0.0%)</span>
                         </div>
                         <div class="h-4.5 w-full bg-blue-50 rounded-full overflow-hidden">
                             <div id="bar-B" class="h-full bg-blue-600 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
@@ -475,8 +488,8 @@
 
                     <div class="space-y-2">
                         <div class="flex justify-between items-center text-xs sm:text-sm">
-                            <span class="font-bold text-red-800">?寞? C : 閮渲??啣? (?券蝯???)</span>
-                            <span class="font-extrabold text-red-600" id="bar-label-C">0 蟡?(0.0%)</span>
+                            <span class="font-bold text-red-800">方案 C : 訴訟到底 (全面結構鑑定)</span>
+                            <span class="font-extrabold text-red-600" id="bar-label-C">0 票 (0.0%)</span>
                         </div>
                         <div class="h-4.5 w-full bg-red-50 rounded-full overflow-hidden">
                             <div id="bar-C" class="h-full bg-red-600 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
@@ -488,13 +501,13 @@
             <div class="bg-white border border-slate-200 rounded-3xl shadow-sm overflow-hidden">
                 <div class="border-b border-slate-100 bg-slate-50 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
-                        <i class="fa-solid fa-list-check text-blue-600"></i> 撌脰”瘙箏?甈犖???”
+                        <i class="fa-solid fa-list-check text-blue-600"></i> 已表決區權人名冊列表
                     </h3>
                     <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <input type="text" id="admin-search" placeholder="??雿憪????.."
+                        <input type="text" id="admin-search" placeholder="搜尋住戶姓名或戶別..."
                             class="px-4 py-1.5 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none w-full sm:w-48 transition">
                         <button id="btn-export-csv" class="px-3 py-1.5 bg-slate-900 hover:bg-slate-850 text-white text-xs font-bold rounded-xl transition flex items-center gap-1 shrink-0">
-                            <i class="fa-solid fa-copy"></i> 銴ˊ CSV
+                            <i class="fa-solid fa-copy"></i> 複製 CSV
                         </button>
                     </div>
                 </div>
@@ -503,13 +516,13 @@
                     <table class="w-full text-left border-collapse min-w-[700px]">
                         <thead>
                             <tr class="bg-slate-100 text-slate-600 text-xs font-bold uppercase border-b border-slate-200">
-                                <th class="p-3.5">憪?</th>
-                                <th class="p-3.5">?嗅</th>
-                                <th class="p-3.5">?舐窗?餉店</th>
-                                <th class="p-3.5 text-center">銵冽捱?寞?</th>
-                                <th class="p-3.5 text-center">?箏葉隞?”??</th>
-                                <th class="p-3.5 text-center">頝典?蝥?</th>
-                                <th class="p-3.5 text-right">??</th>
+                                <th class="p-3.5">姓名</th>
+                                <th class="p-3.5">戶別</th>
+                                <th class="p-3.5">聯絡電話</th>
+                                <th class="p-3.5 text-center">表決方案</th>
+                                <th class="p-3.5 text-center">出席代表意願</th>
+                                <th class="p-3.5 text-center">跨屆續告</th>
+                                <th class="p-3.5 text-right">時間</th>
                             </tr>
                         </thead>
                         <tbody id="vote-table-body" class="text-xs divide-y divide-slate-100 text-slate-700">
@@ -520,28 +533,28 @@
 
             <div class="bg-slate-900 text-slate-300 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
                 <h3 class="font-bold text-white text-base flex items-center gap-2 border-b border-slate-800 pb-3">
-                    <i class="fa-solid fa-circle-nodes text-emerald-400"></i> 憒?撠迨銵冽捱蝟餌絞??Google 閰衣?銵典?甇仿??嚗?
+                    <i class="fa-solid fa-circle-nodes text-emerald-400"></i> 如何將此表決系統與 Google 試算表同步連動？
                 </h3>
                 <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                    ?祉頂蝯望?氬隡箸??函?亙??脩垢撖怠?豢??? 3 甇仿?嚗噶?臬?蝬脤??Ｙ??祕??蟡冽???甇亥?函? Google 閰衣?銵其葉嚗?
+                    本系統支援「無伺服器直接向雲端寫入數據」。只需 3 步驟，便可將網頁產生的實名投票數據自動同步至您的 Google 試算表中：
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
                     <div class="bg-slate-800/50 rounded-2xl p-5 border border-slate-800">
-                        <span class="font-bold text-emerald-400 text-sm">甇仿? 1嚗憓岫蝞”</span>
+                        <span class="font-bold text-emerald-400 text-sm">步驟 1：新增試算表</span>
                         <p class="mt-2 text-slate-400">
-                            撱箇?銝??Google 閰衣?銵剁?撠?銵?A1~G1甈?嚗??亙遣蝡?蝔梧?<code class="text-slate-300 bg-slate-800 px-1 rounded">Timestamp</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Name</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Unit</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Phone</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Option</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Attend</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">CrossTerm</code>??
+                            建立一個 Google 試算表，將首行（A1~G1欄位）分別建立名稱：<code class="text-slate-300 bg-slate-800 px-1 rounded">Timestamp</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Name</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Unit</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Phone</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Option</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">Attend</code>, <code class="text-slate-300 bg-slate-800 px-1 rounded">CrossTerm</code>。
                         </p>
                     </div>
                     <div class="bg-slate-800/50 rounded-2xl p-5 border border-slate-800">
-                        <span class="font-bold text-emerald-400 text-sm">甇仿? 2嚗票銝?Apps Script</span>
+                        <span class="font-bold text-emerald-400 text-sm">步驟 2：貼上 Apps Script</span>
                         <p class="mt-2 text-slate-400">
-                            ?刻岫蝞”銝剝??詻辣隡詨??賬?> ?pps Script??撠雯???刻酉閫?葉??GAS ?交蝔?蝣潸票銝?暺??蝵脯?雯???函?撘?銝西身摰?????遙雿犖??
+                            在試算表中點選「延伸功能」 > 「Apps Script」，將網頁底部註解中的 GAS 接收程式碼貼上，點擊「部署」為「網頁應用程式」，並設定存取權限為「任何人」。
                         </p>
                     </div>
                     <div class="bg-slate-800/50 rounded-2xl p-5 border border-slate-800">
-                        <span class="font-bold text-emerald-400 text-sm">甇仿? 3嚗身蝵?API ??蝺?/span>
+                        <span class="font-bold text-emerald-400 text-sm">步驟 3：設置 API 連接線</span>
                         <p class="mt-2 text-slate-400">
-                            撠蝵脩??? URL 蝬脣?銴ˊ嚗蒂鞎澆??HTML 瑼?摨??<code class="text-slate-300 bg-slate-800 px-1 rounded">const GOOGLE_SCRIPT_URL = "?函?URL蝬脣?"</code> 霈銝哨?摮?敺摰?撖阡??脩垢銝脫嚗?
+                            將部署生成的 URL 網址複製，並貼入本 HTML 檔案底部的 <code class="text-slate-300 bg-slate-800 px-1 rounded">const GOOGLE_SCRIPT_URL = "您的URL網址"</code> 變數中，存檔後即完成實體雲端串接！
                         </p>
                     </div>
                 </div>
@@ -556,10 +569,10 @@
             <i class="fa-solid fa-xmark"></i>
         </button>
         <div class="max-w-3xl w-full max-h-[85vh] flex items-center justify-center">
-            <img src="https://raw.githubusercontent.com/rileyqyxlgrfqy4apc0f-spec/gwanghua-vote/main/S__67731475.jpg" onerror="this.src='https://placehold.co/500x700?text=?啁姘撣摨?靽????祆?'" alt="?啁姘撣摨?靽???????? class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl">
+            <img src="https://raw.githubusercontent.com/rileyqyxlgrfqy4apc0f-spec/gwanghua-vote/main/S__67731475.jpg" onerror="this.src='https://placehold.co/500x700?text=新竹市政府消保官協商公文'" alt="新竹市政府消保官協商開會通知單" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl">
         </div>
         <div class="mt-4 text-white/80 text-sm font-semibold flex items-center gap-2">
-            <i class="fa-solid fa-triangle-exclamation text-yellow-400"></i> ?啁姘撣摨?鞎餌霅啣???霅圈??(瘞?114撟?1???亙????霅?
+            <i class="fa-solid fa-triangle-exclamation text-yellow-400"></i> 新竹市政府消費爭議協商會議通知單 (民國114年11月4日官版公文佐證)
         </div>
     </div>
 
@@ -569,62 +582,62 @@
                 <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-xl mx-auto shadow-inner">
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
-                <h3 class="text-lg font-bold text-slate-900">憭扳?蝞∠??∟澈??霅?/h3>
-                <p class="text-xs text-slate-400">?單??巨???雿?梁??蝯⊿閰梧?隢撓?亙?撅祉恣???唬誑閫???汗??/p>
+                <h3 class="text-lg font-bold text-slate-900">大會管理員身分認證</h3>
+                <p class="text-xs text-slate-400">即時開票名冊包含住戶隱私及聯絡電話，請輸入專屬管理密鑰以解鎖瀏覽。</p>
             </div>
             
             <div class="space-y-1">
-                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">蝞∠?撖蝣?(?身 2026)</label>
+                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">管理密鑰碼 (預設 2026)</label>
                 <div class="relative">
-                    <input type="password" id="auth-password-input" placeholder="隢撓?亙?蝣?
+                    <input type="password" id="auth-password-input" placeholder="請輸入密碼"
                         class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm text-center tracking-widest font-bold">
                     <button id="btn-toggle-password-visible" class="absolute right-3 top-3.5 text-slate-400 hover:text-slate-600 text-xs transition">
                         <i class="fa-solid fa-eye"></i>
                     </button>
                 </div>
                 <p id="auth-error-msg" class="text-red-500 text-[11px] font-bold text-center mt-1 hidden">
-                    <i class="fa-solid fa-circle-exclamation mr-0.5"></i> 撖撽?憭望?嚗??頛詨
+                    <i class="fa-solid fa-circle-exclamation mr-0.5"></i> 密鑰驗證失敗，請重新輸入
                 </p>
             </div>
 
             <div class="flex gap-3">
                 <button id="btn-cancel-auth" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 text-sm font-bold rounded-xl transition">
-                    ??
+                    取消
                 </button>
                 <button id="btn-confirm-auth" class="flex-1 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-sm font-bold rounded-xl transition shadow-lg shadow-indigo-100 flex items-center justify-center gap-1.5">
-                    <i class="fa-solid fa-unlock-keyhole"></i> 撽?閫??
+                    <i class="fa-solid fa-unlock-keyhole"></i> 驗證解鎖
                 </button>
             </div>
         </div>
     </div>
 
     <footer class="bg-slate-900 text-slate-500 py-6 text-center border-t border-slate-800 text-xs mt-12">
-        <p>穢 2026 ??冗?蝞∠?憪?? ?祉雯?”瘙箇頂蝯梁泵???典恥閫?葉蝡?鞎∪?閰摯??</p>
+        <p>© 2026 光華琚社區管理委員會. 本網頁表決系統符合完全客觀、中立之財務評估原則</p>
     </footer>
 
     <div id="toast-wrapper" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
     <script>
         // ==========================================
-        // ?蝡臭葡?交敹身摰?
-        // ?交??Google Sheet ?函蔡憟?Apps Script嚗?撠雯?鞎澆銝嚗?
+        // 【雲端串接核心設定】
+        // 若您在 Google Sheet 部署好 Apps Script，請將網址貼在下方：
         const GOOGLE_SCRIPT_URL = ""; 
         // ==========================================
 
-        // ?恣?摰?脰風?閮剖???
-        const ADMIN_PASSWORD = "2026"; // ?? 隢甇方?靽格?函?敺閫??撖Ⅳ
-        let isAdminAuthenticated = false; // ??隤? status
+        // 【管理員安全防護金鑰設定】
+        const ADMIN_PASSWORD = "2026"; // 👈 請在此處修改您的後台解鎖密碼
+        let isAdminAuthenticated = false; // 初始認證 status
 
-        // 蝷曉??巨?祆?鞈?摨?(?????豢?嚗?歇?游??態,B,C)
+        // 社區開票本機資料庫 (提供初始數據，選項已整合為A,B,C)
         let dbVotes = [
-            { id: "1", name: "?之??, unit: "A璉?0璅?1", phone: "0912-111111", voteOption: "B", willingToAttend: "yes", crossTermContinue: "yes", timestamp: "2026-06-25T14:30:00.000Z" },
-            { id: "2", name: "撘萇???, unit: "B璉?璅?2", phone: "0934-222222", voteOption: "B", willingToAttend: "no", crossTermContinue: "yes", timestamp: "2026-06-25T15:10:00.000Z" },
-            { id: "3", name: "????, unit: "A璉?璅?3", phone: "0956-333333", voteOption: "C", willingToAttend: "no", crossTermContinue: "yes", timestamp: "2026-06-25T15:45:00.000Z" },
-            { id: "4", name: "頞?曈?, unit: "B璉?2璅?1", phone: "0978-444444", voteOption: "A", willingToAttend: "no", crossTermContinue: "no", timestamp: "2026-06-25T16:20:00.000Z" },
-            { id: "5", name: "?遣??, unit: "A璉?璅?2", phone: "0912-333555", voteOption: "B", willingToAttend: "yes", crossTermContinue: "yes", timestamp: "2026-06-25T17:05:00.000Z" }
+            { id: "1", name: "王大明", unit: "A棟10樓之1", phone: "0912-111111", voteOption: "B", willingToAttend: "yes", crossTermContinue: "yes", timestamp: "2026-06-25T14:30:00.000Z" },
+            { id: "2", name: "張美琪", unit: "B棟3樓之2", phone: "0934-222222", voteOption: "B", willingToAttend: "no", crossTermContinue: "yes", timestamp: "2026-06-25T15:10:00.000Z" },
+            { id: "3", name: "李國雄", unit: "A棟5樓之3", phone: "0956-333333", voteOption: "C", willingToAttend: "no", crossTermContinue: "yes", timestamp: "2026-06-25T15:45:00.000Z" },
+            { id: "4", name: "趙小鳳", unit: "B棟12樓之1", phone: "0978-444444", voteOption: "A", willingToAttend: "no", crossTermContinue: "no", timestamp: "2026-06-25T16:20:00.000Z" },
+            { id: "5", name: "林建成", unit: "A棟7樓之2", phone: "0912-333555", voteOption: "B", willingToAttend: "yes", crossTermContinue: "yes", timestamp: "2026-06-25T17:05:00.000Z" }
         ];
 
-        // 蝬脤???頛
+        // 網頁初始載入
         window.onload = function() {
             setupFontSizeToggle();
             renderStatistics();
@@ -632,7 +645,7 @@
             setupSecurityAuth();
         };
 
-        // ==== 摮?憭批??? ====
+        // ==== 字體大小切換 ====
         function setupFontSizeToggle() {
             const FONT_SIZE_KEY = 'gwanghua-font-size';
             const buttons = document.querySelectorAll('[data-font-size-btn]');
@@ -655,7 +668,7 @@
             });
         }
 
-        // ==== Lightbox ?拳???摩 ====        
+        // ==== Lightbox 燈箱開關邏輯 ====
         function setupLightbox() {
             const btnOpen = document.getElementById('btn-open-lightbox');
             const imageCards = document.querySelectorAll('[data-lightbox-src]');
@@ -674,7 +687,12 @@
                 }, 50);
             };
 
+            btnOpen.addEventListener('click', () => {
+                openLightbox(btnOpen.dataset.lightboxSrc, btnOpen.dataset.lightboxAlt, btnOpen.dataset.lightboxCaption);
+            });
+
             imageCards.forEach(card => {
+                if (card.id === 'btn-open-lightbox') return;
                 card.addEventListener('click', () => {
                     openLightbox(card.dataset.lightboxSrc, card.dataset.lightboxAlt, card.dataset.lightboxCaption);
                 });
@@ -695,7 +713,7 @@
             });
         }
 
-        // ==== UI ??????????====
+        // ==== UI 分頁與視圖切換機制 ====
         const tabVote = document.getElementById('tab-vote');
         const tabAdmin = document.getElementById('tab-admin');
         const viewVote = document.getElementById('view-vote');
@@ -726,7 +744,7 @@
             }
         });
 
-        // ==== 敺頨怠?撖Ⅳ撽?璅∠?鈭辣 ====
+        // ==== 後台身分密碼驗證模組事件 ====
         function setupSecurityAuth() {
             const authContainer = document.getElementById('auth-modal-container');
             const authModal = authContainer.querySelector('.bg-white');
@@ -737,7 +755,7 @@
             const errorMsg = document.getElementById('auth-error-msg');
             const btnLogout = document.getElementById('btn-logout');
 
-            // 撅?撽??拳
+            // 展開驗證燈箱
             window.openAuthModal = function() {
                 passInput.value = "";
                 errorMsg.classList.add('hidden');
@@ -749,7 +767,7 @@
                 passInput.focus();
             };
 
-            // ??撽??拳
+            // 關閉驗證燈箱
             window.closeAuthModal = function() {
                 authContainer.classList.add('opacity-0');
                 authModal.classList.add('scale-95');
@@ -758,7 +776,7 @@
                 }, 300);
             };
 
-            // ??撖Ⅳ憿舐內?梯?
+            // 切換密碼顯示隱藏
             toggleVisible.addEventListener('click', () => {
                 if (passInput.type === 'password') {
                     passInput.type = 'text';
@@ -769,23 +787,23 @@
                 }
             });
 
-            // ??
+            // 取消
             btnCancel.addEventListener('click', closeAuthModal);
 
-            // 撖Ⅳ蝣箄??摩
+            // 密碼確認邏輯
             function executeAuthentication() {
                 const userEntered = passInput.value.trim();
                 if (userEntered === ADMIN_PASSWORD) {
                     isAdminAuthenticated = true;
                     closeAuthModal();
-                    tabAdmin.innerHTML = `<i class="fa-solid fa-chart-pie"></i> ?單??巨敺`;
+                    tabAdmin.innerHTML = `<i class="fa-solid fa-chart-pie"></i> 即時開票後台`;
                     switchTab('admin');
-                    showToast("?? 蝞∠??∪?蝣潮?霅???敺撌脫??圾??", "success");
+                    showToast("🔓 管理員密碼驗證成功，後台已成功解鎖！", "success");
                 } else {
                     errorMsg.classList.remove('hidden');
                     passInput.select();
                     passInput.focus();
-                    showToast("??閫??憭望?嚗?頛詨甇?Ⅱ撖蝣?, "error");
+                    showToast("❌ 解鎖失敗！請輸入正確密鑰碼", "error");
                 }
             }
 
@@ -796,16 +814,16 @@
                 }
             });
 
-            // 摰?餃敺
+            // 安全登出後台
             btnLogout.addEventListener('click', () => {
                 isAdminAuthenticated = false;
-                tabAdmin.innerHTML = `<i class="fa-solid fa-lock"></i> ?單??巨敺`;
+                tabAdmin.innerHTML = `<i class="fa-solid fa-lock"></i> 即時開票後台`;
                 switchTab('vote');
-                showToast("?? 撌脣??券?箇恣?頂蝯梧?敺?批蝡臬歇?????);
+                showToast("🔒 已安全退出管理系統，後台控制端已重新鎖定。");
             });
         }
 
-        // ==== ?寞??桅?∠?暺?擃漁鈭? (A, B, C) ====
+        // ==== 方案單選卡片點擊高亮互動 (A, B, C) ====
         const optionRadios = document.querySelectorAll('input[name="vote-option"]');
         optionRadios.forEach(radio => {
             radio.addEventListener('change', () => {
@@ -824,7 +842,7 @@
             });
         });
 
-        // ==== 雿銵冽捱?株”?格?鈭?====
+        // ==== 住戶表決單表單提交 ====
         const voteForm = document.getElementById('vote-form');
         const voteSuccessDiv = document.getElementById('vote-success');
 
@@ -839,13 +857,13 @@
             const crossTermContinue = voteForm.querySelector('input[name="cross-term"]:checked')?.value;
 
             if (!name || !unit || !phone || !voteOption || !willingToAttend || !crossTermContinue) {
-                showToast("?? 隢Ⅱ撖血?詨‵撖急?????憛急?雿?, "warning");
+                showToast("⚠️ 請確實勾選填寫所有星號必填欄位", "warning");
                 return;
             }
 
             const btnSubmit = document.getElementById('btn-submit');
             btnSubmit.disabled = true;
-            btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i> 鞈?摰銝銝?..`;
+            btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i> 資料安全上傳中...`;
 
             const newVote = {
                 id: "vote_" + Date.now(),
@@ -858,7 +876,7 @@
                 timestamp: new Date().toISOString()
             };
 
-            // 憒?閮剖?鈭?Google Apps Script ?交蝡?URL
+            // 如果設定了 Google Apps Script 接收端 URL
             if (GOOGLE_SCRIPT_URL) {
                 try {
                     await fetch(GOOGLE_SCRIPT_URL, {
@@ -869,36 +887,36 @@
                         },
                         body: JSON.stringify(newVote)
                     });
-                    showToast("?? 撌脫???神?仿蝡?Google 閰衣?銵剁?");
+                    showToast("☁️ 已成功即時寫入雲端 Google 試算表！");
                 } catch (err) {
-                    console.error("?脩垢閰衣?銵典頛詨仃??", err);
-                    showToast("?? 鞈?撌脣??潭?啗??澈嚗?撖怠?脩垢閰衣?銵冽??潛????啣虜", "warning");
+                    console.error("雲端試算表傳輸失敗：", err);
+                    showToast("⚠️ 資料已存於本地資料庫，但寫入雲端試算表時發生通訊異常", "warning");
                 }
             }
 
-            // ?砍敹怠???蝝臬?
+            // 本地快取名冊累加
             dbVotes.push(newVote);
 
             setTimeout(() => {
                 document.getElementById('success-name').textContent = name;
                 document.getElementById('success-unit').textContent = unit;
                 
-                let optText = `?寞? ${voteOption} - `;
-                if (voteOption === 'A') optText += "?湔靽桃? (?芾祥)";
-                if (voteOption === 'B') optText += "銝撖拇?鈭迄閮?;
-                if (voteOption === 'C') optText += "閮渲??啣? (?券??)";
+                let optText = `方案 ${voteOption} - `;
+                if (voteOption === 'A') optText += "直接修繕 (自費)";
+                if (voteOption === 'B') optText += "一審民事訴訟";
+                if (voteOption === 'C') optText += "訴訟到底 (全面鑑定)";
                 document.getElementById('success-option').textContent = optText;
 
                 voteForm.classList.add('hidden');
                 voteSuccessDiv.classList.remove('hidden');
 
                 btnSubmit.disabled = false;
-                btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> ?漱蝺?銵冽捱?害;
-                showToast("?? 銵冽捱?漱??嚗?雓????");
+                btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> 提交線上表決單`;
+                showToast("🎉 表決提交成功！感謝您的參與！");
             }, 850);
         });
 
-        // ?憛怠神??
+        // 重新填寫按鈕
         document.getElementById('btn-vote-again').addEventListener('click', () => {
             voteForm.reset();
             ['A', 'B', 'C'].forEach(opt => {
@@ -909,7 +927,7 @@
             voteForm.classList.remove('hidden');
         });
 
-        // ?漱??敺???蝯梯????銋?閬?霅?
+        // 提交成功後，前往統計看板按鈕也需要認證
         document.getElementById('btn-view-results').addEventListener('click', () => {
             if (isAdminAuthenticated) {
                 switchTab('admin');
@@ -918,29 +936,29 @@
             }
         });
 
-        // ==== ?單????梯”蝯梯?蝜芾ˊ ====
+        // ==== 即時動態報表統計繪製 ====
         function renderStatistics() {
             const votes = dbVotes;
             const totalCount = votes.length;
 
-            // 1. ?湔蝯梯??
+            // 1. 更新統計看板
             document.getElementById('stat-total-votes').textContent = totalCount;
             const turnoutRate = ((totalCount / 47) * 100).toFixed(1);
-            document.getElementById('stat-turnout-rate').textContent = `?巨??${turnoutRate}% (?函冗? 47 ??`;
+            document.getElementById('stat-turnout-rate').textContent = `投票率：${turnoutRate}% (全社區 47 戶)`;
 
-            // ?箏葉?格
+            // 出席普查
             const attendCount = votes.filter(v => v.willingToAttend === 'yes').length;
             document.getElementById('stat-attend-count').textContent = attendCount;
             const attendRate = totalCount > 0 ? ((attendCount / totalCount) * 100).toFixed(1) : "0.0";
-            document.getElementById('stat-attend-rate').textContent = `隞?”?箏葉????${attendRate}%`;
+            document.getElementById('stat-attend-rate').textContent = `代表出席意願率：${attendRate}%`;
 
-            // 頝典??格
+            // 跨屆普查
             const crossCount = votes.filter(v => v.crossTermContinue === 'yes').length;
             document.getElementById('stat-crossterm-count').textContent = crossCount;
             const crossRate = totalCount > 0 ? ((crossCount / totalCount) * 100).toFixed(1) : "0.0";
-            document.getElementById('stat-crossterm-rate').textContent = `頝典?鈭斗????${crossRate}%`;
+            document.getElementById('stat-crossterm-rate').textContent = `跨屆交接同意率：${crossRate}%`;
 
-            // 2. 蝯梯??獢?蟡冽銝血???蝜芷璇? (A, B, C)
+            // 2. 統計各方案得票數並動態重繪長條圖 (A, B, C)
             const counts = { A: 0, B: 0, C: 0 };
             votes.forEach(v => {
                 if (counts[v.voteOption] !== undefined) {
@@ -952,20 +970,20 @@
                 const optCount = counts[opt];
                 const optPercent = totalCount > 0 ? ((optCount / totalCount) * 100).toFixed(1) : "0.0";
                 
-                document.getElementById(`bar-label-${opt}`).textContent = `${optCount} 蟡?(${optPercent}%)`;
+                document.getElementById(`bar-label-${opt}`).textContent = `${optCount} 票 (${optPercent}%)`;
                 document.getElementById(`bar-${opt}`).style.width = `${optPercent}%`;
             });
 
-            // 3. 皜脫?摨惜雿撖血??餉?銵冽
+            // 3. 渲染底層住戶實名登記表格
             renderTable();
 
-            // ?湔??
+            // 更新時間
             const now = new Date();
             const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-            document.getElementById('last-update-time').textContent = `?敺?堆?${timeStr}`;
+            document.getElementById('last-update-time').textContent = `最後更新：${timeStr}`;
         }
 
-        // ??銵冽蝜芾ˊ??撠?瞈?
+        // 名冊表格繪製與搜尋過濾
         function renderTable() {
             const tableBody = document.getElementById('vote-table-body');
             const searchVal = document.getElementById('admin-search').value.toLowerCase().trim();
@@ -978,7 +996,7 @@
                 tableBody.innerHTML = `
                     <tr>
                         <td colspan="7" class="p-8 text-center text-slate-400 font-medium">
-                            瘝????啁蝚衣??甈犖?駁?鞈?
+                            沒有搜尋到相符的區權人登錄資料
                         </td>
                     </tr>
                 `;
@@ -990,15 +1008,15 @@
                 let optionName = "";
                 if (v.voteOption === 'A') {
                     badgeClass = "bg-slate-100 text-slate-600 border-slate-200";
-                    optionName = "?寞? A (?芾祥)";
+                    optionName = "方案 A (自費)";
                 }
                 if (v.voteOption === 'B') {
                     badgeClass = "bg-blue-50 text-blue-700 border-blue-200";
-                    optionName = "?寞? B (銝撖抵迄閮?";
+                    optionName = "方案 B (一審訴訟)";
                 }
                 if (v.voteOption === 'C') {
                     badgeClass = "bg-red-50 text-red-700 border-red-200";
-                    optionName = "?寞? C (閮渲??啣?)";
+                    optionName = "方案 C (訴訟到底)";
                 }
 
                 const date = new Date(v.timestamp);
@@ -1016,13 +1034,13 @@
                         </td>
                         <td class="p-3.5 text-center">
                             ${v.willingToAttend === 'yes' 
-                                ? '<span class="text-emerald-600 font-bold"><i class="fa-solid fa-circle-check mr-1"></i>憿??箏滬</span>' 
-                                : '<span class="text-slate-400"><i class="fa-solid fa-circle-xmark mr-1"></i>銝噶/閮?撣?/span>'}
+                                ? '<span class="text-emerald-600 font-bold"><i class="fa-solid fa-circle-check mr-1"></i>願意出庭</span>' 
+                                : '<span class="text-slate-400"><i class="fa-solid fa-circle-xmark mr-1"></i>不便/託律師</span>'}
                         </td>
                         <td class="p-3.5 text-center">
                             ${v.crossTermContinue === 'yes' 
-                                ? '<span class="text-indigo-600 font-bold"><i class="fa-solid fa-link mr-1"></i>??蝥?</span>' 
-                                : '<span class="text-slate-400">銝???/span>'}
+                                ? '<span class="text-indigo-600 font-bold"><i class="fa-solid fa-link mr-1"></i>同意續告</span>' 
+                                : '<span class="text-slate-400">不同意</span>'}
                         </td>
                         <td class="p-3.5 text-right text-slate-400 font-mono">${formatTime}</td>
                     </tr>
@@ -1030,35 +1048,35 @@
             }).join('');
         }
 
-        // ????
+        // 搜尋監聽
         document.getElementById('admin-search').addEventListener('input', renderTable);
 
-        // 頛蝷曉??冽?蟡冽
+        // 載入社區隨機票數
         document.getElementById('btn-load-mock').addEventListener('click', () => {
             const mockData = [
-                { id: "m1", name: "撘萄?瘜?, unit: "A璉?璅?1", phone: "0911-333444", voteOption: "B", willingToAttend: "yes", crossTermContinue: "yes", timestamp: new Date().toISOString() },
-                { id: "m2", name: "?喟???, unit: "A璉?4璅?2", phone: "0921-555666", voteOption: "B", willingToAttend: "no", crossTermContinue: "yes", timestamp: new Date().toISOString() },
-                { id: "m3", name: "?璁?, unit: "B璉?璅?3", phone: "0932-777888", voteOption: "A", willingToAttend: "no", crossTermContinue: "no", timestamp: new Date().toISOString() },
-                { id: "m4", name: "?∠???, unit: "B璉?5璅?1", phone: "0955-111222", voteOption: "B", willingToAttend: "no", crossTermContinue: "yes", timestamp: new Date().toISOString() },
-                { id: "m5", name: "鞈湧脰瓷", unit: "A璉?璅?3", phone: "0972-222888", voteOption: "B", willingToAttend: "yes", crossTermContinue: "yes", timestamp: new Date().toISOString() },
-                { id: "m6", name: "閮勗???, unit: "B璉?璅?2", phone: "0933-999111", voteOption: "C", willingToAttend: "no", crossTermContinue: "yes", timestamp: new Date().toISOString() },
-                { id: "m7", name: "雓???, unit: "A璉?1璅?1", phone: "0915-222444", voteOption: "A", willingToAttend: "no", crossTermContinue: "no", timestamp: new Date().toISOString() }
+                { id: "m1", name: "張國泰", unit: "A棟5樓之1", phone: "0911-333444", voteOption: "B", willingToAttend: "yes", crossTermContinue: "yes", timestamp: new Date().toISOString() },
+                { id: "m2", name: "陳秋月", unit: "A棟14樓之2", phone: "0921-555666", voteOption: "B", willingToAttend: "no", crossTermContinue: "yes", timestamp: new Date().toISOString() },
+                { id: "m3", name: "林昭榮", unit: "B棟2樓之3", phone: "0932-777888", voteOption: "A", willingToAttend: "no", crossTermContinue: "no", timestamp: new Date().toISOString() },
+                { id: "m4", name: "蔡瑞芳", unit: "B棟15樓之1", phone: "0955-111222", voteOption: "B", willingToAttend: "no", crossTermContinue: "yes", timestamp: new Date().toISOString() },
+                { id: "m5", name: "賴進財", unit: "A棟9樓之3", phone: "0972-222888", voteOption: "B", willingToAttend: "yes", crossTermContinue: "yes", timestamp: new Date().toISOString() },
+                { id: "m6", name: "許志明", unit: "B棟8樓之2", phone: "0933-999111", voteOption: "C", willingToAttend: "no", crossTermContinue: "yes", timestamp: new Date().toISOString() },
+                { id: "m7", name: "謝淑惠", unit: "A棟11樓之1", phone: "0915-222444", voteOption: "A", willingToAttend: "no", crossTermContinue: "no", timestamp: new Date().toISOString() }
             ];
             dbVotes = [...dbVotes, ...mockData];
             renderStatistics();
-            showToast("??撌脰?芋?砍??7 蝑??嗥?撖西”瘙箸??");
+            showToast("✨ 已自動模擬匯入 7 筆住戶真實表決數據！");
         });
 
-        // 銴ˊ CSV ?豢? to Clipboard
+        // 複製 CSV 數據 to Clipboard
         document.getElementById('btn-export-csv').addEventListener('click', () => {
             if (dbVotes.length === 0) {
-                showToast("?? ?桀??怎雿銵冽捱鞈??臭?銴ˊ嚗?, "warning");
+                showToast("⚠️ 目前暫無住戶表決資料可供複製！", "warning");
                 return;
             }
 
-            let csvContent = "憪?,?嗅,?舐窗?餉店,銵冽捱?寞?,憿??箏葉,頝典?蝥?\n";
+            let csvContent = "姓名,戶別,聯絡電話,表決方案,願意出席,跨屆續告\n";
             dbVotes.forEach(v => {
-                csvContent += `${v.name},${v.unit},${v.phone},?寞?${v.voteOption},${v.willingToAttend === 'yes' ? '憿?' : '銝噶'},${v.crossTermContinue === 'yes' ? '??' : '銝???}\n`;
+                csvContent += `${v.name},${v.unit},${v.phone},方案${v.voteOption},${v.willingToAttend === 'yes' ? '願意' : '不便'},${v.crossTermContinue === 'yes' ? '同意' : '不同意'}\n`;
             });
 
             const textarea = document.createElement('textarea');
@@ -1068,14 +1086,14 @@
             textarea.select();
             try {
                 document.execCommand('copy');
-                showToast("?? 撌脣??函冗? CSV ???豢?銴ˊ?唳?鞎潛倏銝哨?");
+                showToast("📋 已將全社區 CSV 名冊數據複製到您的剪貼簿中！");
             } catch (err) {
-                showToast("??銴ˊ憭望?嚗??????貉?鋆?, "error");
+                showToast("❌ 複製失敗，請手手動圈選複製", "error");
             }
             document.body.removeChild(textarea);
         });
 
-        // ==== ?芾?蝎曄? Toast ? ====
+        // ==== 自訂精美 Toast 通知 ====
         function showToast(message, type = "success") {
             const wrapper = document.getElementById('toast-wrapper');
             const toast = document.createElement('div');
@@ -1107,7 +1125,7 @@
             }, 3500);
         }
 
-        // HTML 皞Ｖ??蕪
+        // HTML 溢位過濾
         function escapeHTML(str) {
             return str.replace(/[&<>'"]/g, 
                 tag => ({
