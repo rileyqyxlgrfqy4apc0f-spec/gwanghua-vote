@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="utf-8">
@@ -163,78 +163,128 @@
                     </div>
                 </div>
 
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse min-w-[900px]">
-                        <thead>
-                            <tr class="bg-slate-900 text-white text-xs font-bold uppercase border-b border-slate-800">
-                                <th class="p-4 w-[16%] text-center border-r border-slate-800">評估項目</th>
-                                <th class="p-4 w-[16%] text-center text-slate-300 bg-slate-950">方案 0 (歷史紀錄)<br><span class="text-[10px] font-normal text-red-300">消保官調解 (已失敗)</span></th>
-                                <th class="p-4 w-[18%] text-center text-slate-100">方案 A (直接修繕)<br><span class="text-[10px] font-normal text-slate-300">不訴訟 / 社區自理</span></th>
-                                <th class="p-4 w-[25%] text-center text-blue-300 bg-blue-950/20">方案 B (一審訴訟)<br><span class="text-[10px] font-normal text-blue-400">委託撰狀 或 律師全權代理出庭</span></th>
-                                <th class="p-4 w-[25%] text-center text-red-300 bg-red-950/20">方案 C (訴訟到底)<br><span class="text-[10px] font-normal text-red-400">上訴到底與高階全面鑑定</span></th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-xs sm:text-sm divide-y divide-slate-100 text-slate-600">
-                            <tr class="bg-slate-50/50">
-                                <td colspan="5" class="p-2.5 font-bold text-slate-900 bg-slate-200/60 pl-4 text-xs tracking-wider uppercase"><i class="fa-solid fa-clock mr-1"></i> 時程與狀態評估</td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">目前狀態</td>
-                                <td class="p-4 text-center text-red-600 font-semibold bg-red-50/30">已不成立結案</td>
-                                <td class="p-4 text-center text-slate-600 font-semibold">直接自費修好</td>
-                                <td class="p-4 text-center text-blue-600 font-semibold bg-blue-50/10">正式提起一審民事訴訟</td>
-                                <td class="p-4 text-center text-red-600 font-semibold bg-red-50/10">若一審敗訴向建商上訴到底</td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">預估時間成本</td>
-                                <td class="p-4 text-center text-slate-400">約 2 ~ 3 個月<br><span class="text-xs text-red-500 font-semibold">(已消耗)</span></td>
-                                <td class="p-4 text-center text-slate-700 font-semibold">1-3 個月</td>
-                                <td class="p-4 text-center text-blue-600 font-semibold bg-blue-50/10">
-                                    <span class="text-slate-800 font-bold">一年以上</span><br>
-                                    <span class="text-xs text-slate-400 font-normal">(一審訴訟與鑑定程序)</span>
-                                </td>
-                                <td class="p-4 text-center text-red-600 font-semibold bg-red-50/10">
-                                    <span class="text-slate-800 font-bold">未知</span><br>
-                                    <span class="text-xs text-slate-400 font-normal">(跨審級與全面鑑定)</span>
-                                </td>
-                            </tr>
-                            <tr class="border-b border-slate-200">
-                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">跨屆管委會負擔</td>
-                                <td class="p-4 text-center text-slate-400">無 (已結案)</td>
-                                <td class="p-4 text-center text-slate-400">無 (當屆立刻解決)</td>
-                                <td class="p-4 text-center text-blue-700 font-bold bg-blue-50/10">高</td>
-                                <td class="p-4 text-center text-red-600 font-semibold bg-red-50/10">極高 (跨2~3屆管委)</td>
-                            </tr>
+                <div class="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                            <tr class="bg-slate-50/50">
-                                <td colspan="5" class="p-2.5 font-bold text-slate-900 bg-indigo-100 pl-4 text-xs tracking-wider uppercase"><i class="fa-solid fa-gavel mr-1"></i> ⚖️ 委任律師狀態對比</td>
-                            </tr>
-                            <tr class="bg-indigo-50/10 border-b border-slate-200">
-                                <td class="p-4 font-bold bg-indigo-50/30 text-indigo-950 text-center border-r border-slate-150">律師代理出庭<br><span class="text-[10px] font-normal text-slate-500">(是否委任律師)</span></td>
-                                <td class="p-4 text-center text-slate-500">無<br><span class="text-xs text-slate-400">(消保官協商)</span></td>
-                                <td class="p-4 text-center text-slate-500">無<br><span class="text-xs text-slate-400">(自行委外施工)</span></td>
-                                <td class="p-4 bg-blue-50/10 text-center">
-                                    <span class="text-blue-700 font-bold">依出庭意願彈性決定</span><br>
-                                    <span class="text-[11px] text-slate-500">(可僅委任撰狀 或 全權代理)</span>
-                                </td>
-                                <td class="p-4 text-center text-red-700 font-bold bg-red-50/10"><i class="fa-solid fa-circle-check"></i> 有<br><span class="text-xs text-red-600">(律師全權代理出庭)</span></td>
-                            </tr>
+                    <!-- 方案 0 -->
+                    <div class="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm">
+                        <div class="bg-slate-900 px-4 py-3">
+                            <div class="font-extrabold text-white text-base">方案 0 (歷史紀錄)</div>
+                            <div class="text-[11px] font-medium text-red-300 mt-0.5">消保官調解 (已失敗)</div>
+                        </div>
+                        <dl class="divide-y divide-slate-100 text-sm">
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">目前狀態</dt>
+                                <dd class="text-right text-red-600 font-semibold">已不成立結案</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">預估時間成本</dt>
+                                <dd class="text-right text-slate-500">約 2 ~ 3 個月 <span class="text-xs text-red-500 font-semibold">(已消耗)</span></dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">跨屆管委會負擔</dt>
+                                <dd class="text-right text-slate-400">無 (已結案)</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">律師代理出庭</dt>
+                                <dd class="text-right text-slate-500">無 <span class="text-xs text-slate-400">(消保官協商)</span></dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3 bg-slate-50/50">
+                                <dt class="font-bold text-slate-500 shrink-0">社區管理費預估支出</dt>
+                                <dd class="text-right font-mono text-slate-700 font-bold">0 元</dd>
+                            </div>
+                        </dl>
+                    </div>
 
-                            <tr class="bg-slate-50/50">
-                                <td colspan="5" class="p-2.5 font-bold text-slate-900 bg-slate-200/60 pl-4 text-xs tracking-wider uppercase"><i class="fa-solid fa-wallet mr-1"></i> 💰 社區公積金提撥與預算規模</td>
-                            </tr>
-                            <tr class="border-b border-slate-200">
-                                <td class="p-4 font-bold bg-slate-50/50 text-slate-800 text-center border-r border-slate-150">社區管理費預估支出<br><span class="text-[10px] text-red-500 font-normal">(由公積金專戶提撥)</span></td>
-                                <td class="p-4 text-center font-mono">0 元</td>
-                                <td class="p-4 text-center font-mono text-slate-700 font-bold"> 0<br><span class="text-[10px] text-slate-400 font-normal">(已從管理費收取)</span></td>
-                                <td class="p-4 bg-blue-50/10 font-mono text-center">
-                                    <span class="text-blue-700 font-bold text-base">17.2萬 ~ 23.5萬</span><br>
-                                    <span class="text-[10px] text-slate-500">(取決於律師委任程度/含預估鑑定費用)</span>
-                                </td>
-                                <td class="p-4 text-center font-mono text-red-700 font-black bg-red-50/10"> 高於一審金額 <br><span class="text-[10px] text-red-500 font-normal">(含土木公會高階鑑定)</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <!-- 方案 A -->
+                    <div class="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm">
+                        <div class="bg-slate-700 px-4 py-3">
+                            <div class="font-extrabold text-white text-base">方案 A (直接修繕)</div>
+                            <div class="text-[11px] font-medium text-slate-300 mt-0.5">不訴訟 / 社區自理</div>
+                        </div>
+                        <dl class="divide-y divide-slate-100 text-sm">
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">目前狀態</dt>
+                                <dd class="text-right text-slate-700 font-semibold">直接自費修好</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">預估時間成本</dt>
+                                <dd class="text-right text-slate-700 font-semibold">1-3 個月</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">跨屆管委會負擔</dt>
+                                <dd class="text-right text-slate-400">無 (當屆立刻解決)</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">律師代理出庭</dt>
+                                <dd class="text-right text-slate-500">無 <span class="text-xs text-slate-400">(自行委外施工)</span></dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3 bg-slate-50/50">
+                                <dt class="font-bold text-slate-500 shrink-0">社區管理費預估支出</dt>
+                                <dd class="text-right font-mono text-slate-700 font-bold">0 <span class="text-[10px] text-slate-400 font-normal">(已從管理費收取)</span></dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <!-- 方案 B -->
+                    <div class="rounded-2xl border-2 border-blue-300 overflow-hidden bg-white shadow-sm">
+                        <div class="bg-blue-700 px-4 py-3">
+                            <div class="font-extrabold text-white text-base">方案 B (一審訴訟)</div>
+                            <div class="text-[11px] font-medium text-blue-200 mt-0.5">委託撰狀 或 律師全權代理出庭</div>
+                        </div>
+                        <dl class="divide-y divide-blue-100 text-sm">
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">目前狀態</dt>
+                                <dd class="text-right text-blue-700 font-semibold">正式提起一審民事訴訟</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">預估時間成本</dt>
+                                <dd class="text-right"><span class="text-slate-800 font-bold">一年以上</span><br><span class="text-xs text-slate-400 font-normal">(一審訴訟與鑑定程序)</span></dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">跨屆管委會負擔</dt>
+                                <dd class="text-right text-blue-700 font-bold">高</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">律師代理出庭</dt>
+                                <dd class="text-right"><span class="text-blue-700 font-bold">依出庭意願彈性決定</span><br><span class="text-[11px] text-slate-500">(可僅委任撰狀 或 全權代理)</span></dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3 bg-blue-50/40">
+                                <dt class="font-bold text-slate-500 shrink-0">社區管理費預估支出</dt>
+                                <dd class="text-right"><span class="text-blue-700 font-bold font-mono text-base">17.2萬 ~ 23.5萬</span><br><span class="text-[10px] text-slate-500">(取決於律師委任程度/含預估鑑定費用)</span></dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <!-- 方案 C -->
+                    <div class="rounded-2xl border-2 border-red-300 overflow-hidden bg-white shadow-sm">
+                        <div class="bg-red-700 px-4 py-3">
+                            <div class="font-extrabold text-white text-base">方案 C (訴訟到底)</div>
+                            <div class="text-[11px] font-medium text-red-200 mt-0.5">上訴到底與高階全面鑑定</div>
+                        </div>
+                        <dl class="divide-y divide-red-100 text-sm">
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">目前狀態</dt>
+                                <dd class="text-right text-red-600 font-semibold">若一審敗訴向建商上訴到底</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">預估時間成本</dt>
+                                <dd class="text-right"><span class="text-slate-800 font-bold">未知</span><br><span class="text-xs text-slate-400 font-normal">(跨審級與全面鑑定)</span></dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">跨屆管委會負擔</dt>
+                                <dd class="text-right text-red-600 font-semibold">極高 (跨2~3屆管委)</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3">
+                                <dt class="font-bold text-slate-500 shrink-0">律師代理出庭</dt>
+                                <dd class="text-right text-red-700 font-bold"><i class="fa-solid fa-circle-check"></i> 有<br><span class="text-xs text-red-600 font-normal">(律師全權代理出庭)</span></dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-3 px-4 py-3 bg-red-50/40">
+                                <dt class="font-bold text-slate-500 shrink-0">社區管理費預估支出</dt>
+                                <dd class="text-right font-mono text-red-700 font-black">高於一審金額<br><span class="text-[10px] text-red-500 font-normal">(含土木公會高階鑑定)</span></dd>
+                            </div>
+                        </dl>
+                    </div>
+
                 </div>
             </div>
 
