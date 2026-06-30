@@ -101,7 +101,7 @@
                     <i class="fa-solid fa-square-poll-horizontal"></i> 住戶投票登記
                 </button>
                 <button id="tab-admin" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold rounded-lg transition-all duration-300 text-slate-600 hover:text-slate-950">
-                    <i class="fa-solid fa-lock"></i> 即時開票後台
+                    <i class="fa-solid fa-lock"></i> <!--即時開票後台-->
                 </button>
             </div>
             </div>
@@ -110,7 +110,7 @@
 
     <div class="bg-blue-600 text-white px-4 py-2 text-xs sm:text-sm text-center font-semibold shadow-inner flex items-center justify-center gap-2">
         <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span>系統已啟用本機模擬資料庫，點擊右上角「即時開票後台」並驗證管理員密碼即可同步觀看開票。</span>
+        <span> <!--系統已啟用本機模擬資料庫，點擊右上角「即時開票後台」並驗證管理員密碼即可同步觀看開票-->。</span>
     </div>
 
     <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6">
@@ -297,9 +297,29 @@
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-1.5">戶別 / 棟別樓層 <span class="text-red-500">*</span></label>
-                            <input type="text" id="reg-unit" placeholder="例：A棟12樓之2" required
-                                class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm">
+                            <label class="block text-sm font-bold text-slate-700 mb-1.5">戶別 (請下拉選擇) <span class="text-red-500">*</span></label>
+                            <div class="flex gap-2">
+                                <select id="reg-floor"
+                                    class="flex-1 px-3 py-2.5 border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm">
+                                    <option value="" disabled selected>樓層</option>
+                                    <option value="1">1樓 (店面)</option>
+                                    <option value="2">2樓</option>
+                                    <option value="3">3樓</option>
+                                    <option value="4">4樓</option>
+                                    <option value="5">5樓</option>
+                                    <option value="6">6樓</option>
+                                    <option value="7">7樓</option>
+                                    <option value="8">8樓</option>
+                                    <option value="9">9樓</option>
+                                    <option value="10">10樓</option>
+                                </select>
+                                <select id="reg-room" disabled
+                                    class="flex-1 px-3 py-2.5 border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm disabled:bg-slate-100 disabled:text-slate-400">
+                                    <option value="" disabled selected>戶別</option>
+                                </select>
+                            </div>
+                            <p class="text-[11px] text-slate-400 mt-1.5" id="reg-unit-preview">＊2樓以上為 A~E 戶，1樓為店面 S1、S2</p>
+                            <input type="hidden" id="reg-unit" value="">
                         </div>
                         <div>
                             <label class="block text-sm font-bold text-slate-700 mb-1.5">區權人 / 住戶姓名 <span class="text-red-500">*</span></label>
@@ -633,7 +653,7 @@
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
                 <h3 class="text-lg font-bold text-slate-900">大會管理員身分認證</h3>
-                <p class="text-xs text-slate-400">即時開票名冊包含住戶隱私及聯絡電話，請輸入專屬管理密鑰以解鎖瀏覽。</p>
+                <p class="text-xs text-slate-400"><!--即時開票名冊包含住戶隱私及聯絡電話，請輸入專屬管理密鑰以解鎖瀏覽。--></p>
             </div>
             
             <div class="space-y-1">
@@ -671,28 +691,107 @@
         // ==========================================
         // 【雲端串接核心設定】
         // 若您在 Google Sheet 部署好 Apps Script，請將網址貼在下方：
-        const GOOGLE_SCRIPT_URL = ""; 
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxDPTK20dGr0BwaQ6Dzng2BCzyaf_zVqma1mH6_uIgB0NO8a7f8rCSq1C63Af-PW4qpEQ/exec"; 
         // ==========================================
 
         // 【管理員安全防護金鑰設定】
         const ADMIN_PASSWORD = "2026"; // 👈 請在此處修改您的後台解鎖密碼
         let isAdminAuthenticated = false; // 初始認證 status
 
-        // 社區開票本機資料庫 (提供初始數據，選項已整合為A,B,C)
-        let dbVotes = [
-            { id: "1", name: "王大明", unit: "A棟10樓之1", phone: "0912-111111", voteOption: "B", willingToAttend: "yes", crossTermContinue: "yes", timestamp: "2026-06-25T14:30:00.000Z" },
-            { id: "2", name: "張美琪", unit: "B棟3樓之2", phone: "0934-222222", voteOption: "B", willingToAttend: "no", crossTermContinue: "yes", timestamp: "2026-06-25T15:10:00.000Z" },
-            { id: "3", name: "李國雄", unit: "A棟5樓之3", phone: "0956-333333", voteOption: "C", willingToAttend: "no", crossTermContinue: "yes", timestamp: "2026-06-25T15:45:00.000Z" },
-            { id: "4", name: "趙小鳳", unit: "B棟12樓之1", phone: "0978-444444", voteOption: "A", willingToAttend: "no", crossTermContinue: "no", timestamp: "2026-06-25T16:20:00.000Z" },
-            { id: "5", name: "林建成", unit: "A棟7樓之2", phone: "0912-333555", voteOption: "B", willingToAttend: "yes", crossTermContinue: "yes", timestamp: "2026-06-25T17:05:00.000Z" }
-        ];
+        // 社區開票資料庫：實際資料於開頁時由雲端 Google 試算表載入 (loadVotesFromCloud)
+        // 如需離線測試，可點後台「載入示範資料」按鈕注入假資料
+        let dbVotes = [];
+
+        // 從雲端 Google 試算表讀回所有真實投票，覆蓋本機示範資料
+        async function loadVotesFromCloud() {
+            if (!GOOGLE_SCRIPT_URL) return; // 未設定網址則沿用本機示範資料
+
+            const totalEl = document.getElementById('stat-total-votes');
+            if (totalEl) totalEl.textContent = '…'; // 載入中提示
+
+            try {
+                const res = await fetch(GOOGLE_SCRIPT_URL, { method: 'GET' });
+                const data = await res.json();
+                if (Array.isArray(data)) {
+                    // 正規化欄位，避免空值造成搜尋/統計出錯
+                    dbVotes = data.map(v => ({
+                        id: v.id || ("vote_" + Math.random().toString(36).slice(2)),
+                        name: (v.name || "").toString(),
+                        unit: (v.unit || "").toString(),
+                        phone: (v.phone || "").toString(),
+                        voteOption: (v.voteOption || "").toString().trim().toUpperCase(),
+                        willingToAttend: (v.willingToAttend || "").toString(),
+                        crossTermContinue: (v.crossTermContinue || "").toString(),
+                        timestamp: v.timestamp || ""
+                    }));
+                    renderStatistics();
+                    if (typeof renderTable === 'function') renderTable();
+                }
+            } catch (err) {
+                console.error("讀取雲端試算表失敗：", err);
+                showToast("⚠️ 即時票數讀取失敗，暫時顯示本機資料", "warning");
+                renderStatistics(); // 還原顯示
+            }
+        }
+
+        // 戶別連動下拉：先選樓層再選戶別，自動組成標準字串寫入隱藏欄位 #reg-unit
+        function setupUnitSelectors() {
+            const floorSel = document.getElementById('reg-floor');
+            const roomSel = document.getElementById('reg-room');
+            const hidden = document.getElementById('reg-unit');
+            const preview = document.getElementById('reg-unit-preview');
+            if (!floorSel || !roomSel || !hidden) return;
+
+            function syncUnit() {
+                const floor = floorSel.value;
+                const room = roomSel.value;
+                let unit = "";
+                if (floor === "1") {
+                    unit = room;                 // 店面：直接用 S1 / S2
+                } else if (floor && room) {
+                    unit = room + floor;         // 住家：字母 + 樓層，例如 C5
+                }
+                hidden.value = unit;
+                if (preview) {
+                    preview.textContent = unit
+                        ? "✓ 您選擇的戶別：" + unit
+                        : "＊2樓以上為 A~E 戶，1樓為店面 S1、S2";
+                    preview.className = unit
+                        ? "text-[11px] text-blue-600 font-semibold mt-1.5"
+                        : "text-[11px] text-slate-400 mt-1.5";
+                }
+            }
+
+            floorSel.addEventListener('change', () => {
+                const floor = floorSel.value;
+                roomSel.innerHTML = '<option value="" disabled selected>戶別</option>';
+                let opts = [];
+                if (floor === "1") {
+                    opts = [["S1", "S1 店面"], ["S2", "S2 店面"]];
+                } else if (floor) {
+                    opts = [["A", "A 戶"], ["B", "B 戶"], ["C", "C 戶"], ["D", "D 戶"], ["E", "E 戶"]];
+                }
+                opts.forEach(([val, label]) => {
+                    const o = document.createElement('option');
+                    o.value = val;
+                    o.textContent = label;
+                    roomSel.appendChild(o);
+                });
+                roomSel.disabled = opts.length === 0;
+                syncUnit();
+            });
+
+            roomSel.addEventListener('change', syncUnit);
+        }
 
         // 網頁初始載入
         window.onload = function() {
             setupFontSizeToggle();
-            renderStatistics();
+            renderStatistics();   // 先用本機資料畫一次，避免畫面空白
             setupLightbox();
             setupSecurityAuth();
+            setupUnitSelectors(); // 戶別下拉選單
+            loadVotesFromCloud(); // 再從雲端覆蓋為真實即時票數
         };
 
         // ==== 字體大小切換 ====
@@ -911,6 +1010,13 @@
                 return;
             }
 
+            // 防止同一戶別重複投票（比對已載入的雲端資料）
+            const dup = dbVotes.find(v => normUnit(v.unit) === normUnit(unit));
+            if (dup) {
+                showToast("⚠️ 此戶別已完成表決，無法重複投票（如需更正請洽管委會）", "warning");
+                return;
+            }
+
             const btnSubmit = document.getElementById('btn-submit');
             btnSubmit.disabled = true;
             btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i> 資料安全上傳中...`;
@@ -969,6 +1075,19 @@
         // 重新填寫按鈕
         document.getElementById('btn-vote-again').addEventListener('click', () => {
             voteForm.reset();
+            // 重置戶別下拉選單與提示
+            const roomSel = document.getElementById('reg-room');
+            const preview = document.getElementById('reg-unit-preview');
+            const hidden = document.getElementById('reg-unit');
+            if (roomSel) {
+                roomSel.innerHTML = '<option value="" disabled selected>戶別</option>';
+                roomSel.disabled = true;
+            }
+            if (hidden) hidden.value = "";
+            if (preview) {
+                preview.textContent = "＊2樓以上為 A~E 戶，1樓為店面 S1、S2";
+                preview.className = "text-[11px] text-slate-400 mt-1.5";
+            }
             ['A', 'B', 'C'].forEach(opt => {
                 const card = document.getElementById(`card-option-${opt}`);
                 card.className = "relative flex items-start gap-4 p-5 border border-slate-200 rounded-2xl hover:bg-slate-50/50 transition-all duration-300 cursor-pointer group";
@@ -1173,6 +1292,11 @@
                     toast.remove();
                 }, 300);
             }, 3500);
+        }
+
+        // 戶別正規化：去除所有空白並轉小寫，與後端比對規則一致
+        function normUnit(v) {
+            return (v || "").toString().replace(/\s+/g, "").toLowerCase();
         }
 
         // HTML 溢位過濾
